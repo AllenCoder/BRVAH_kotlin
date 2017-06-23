@@ -37,7 +37,7 @@
 ```
 
 # 如何使用它来创建Adapter？
-![demo](https://github.com/CymChad/BaseRecyclerViewAdapterHelper/blob/master/demo_res/item_view.png)
+
 ```java
 class QuickAdapter(dataSize: Int) : BaseQuickAdapter<Status, BaseViewHolder>(R.layout.layout_animation, DataServer.getSampleData(dataSize)) {
 
@@ -146,7 +146,7 @@ Activity
 
 
 # 如何使用它添加动画？
-![demo](https://github.com/CymChad/BaseRecyclerViewAdapterHelper/blob/master/demo_res/animation.gif)
+
 ```java
 // 一行代码搞定（默认为渐显效果）
   mAnimationAdapter?.openLoadAnimation()
@@ -164,7 +164,7 @@ mAnimationAdapter?.openLoadAnimation(BaseQuickAdapter.ALPHAIN);
                                     })
 ```
 # 使用它添加头部添加尾部
-![demo](https://github.com/CymChad/BaseRecyclerViewAdapterHelper/blob/master/demo_res/header_footer.gif)
+
 ```java
 // add
 mQuickAdapter?.addHeaderView(getView());
@@ -177,7 +177,7 @@ removeAllHeaderView();
 removeAllFooterView();
 ```
 # 使用它加载更多
-![demo](https://github.com/CymChad/BaseRecyclerViewAdapterHelper/blob/master/demo_res/load_more.gif)
+
 ```java
 mQuickAdapter.openLoadMore(PAGE_SIZE, true);
 mQuickAdapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
@@ -203,7 +203,7 @@ mQuickAdapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener
 mQuickAdapter.setLoadingView(customView);
 ```
 # 使用分组
-![demo](https://github.com/CymChad/BaseRecyclerViewAdapterHelper/blob/master/demo_res/section_headers.gif)
+
 ```java
 class SectionAdapter constructor(layoutResId: Int, sectionHeadResId: Int, data: List<MySection>) : BaseSectionQuickAdapter<MySection, BaseViewHolder>(layoutResId, sectionHeadResId, data) {
 
@@ -225,7 +225,7 @@ class SectionAdapter constructor(layoutResId: Int, sectionHeadResId: Int, data: 
 }
 ```
 # 如何添加多种类型item？
-![demo](https://github.com/CymChad/BaseRecyclerViewAdapterHelper/blob/master/demo_res/multiple_item.gif)
+
 ```java
 class MultipleItemQuickAdapter(context: Context, data: List<MultipleItem>) : BaseMultiItemQuickAdapter<MultipleItem, BaseViewHolder>(data) {
 
@@ -249,12 +249,12 @@ class MultipleItemQuickAdapter(context: Context, data: List<MultipleItem>) : Bas
 
 ```
 # 使用setEmptyView
-![demo](https://github.com/CymChad/BaseRecyclerViewAdapterHelper/blob/master/demo_res/empty_view.gif)
+
 ```java
 mQuickAdapter?.setEmptyView(getView());
 ```
 # 使用拖拽与滑动删除
-![demo](https://github.com/CymChad/BaseRecyclerViewAdapterHelper/blob/master/demo_res/drag_item.gif)
+
 ```java
   val listener = object : OnItemDragListener {
             override fun onItemDragStart(viewHolder: RecyclerView.ViewHolder, pos: Int) {
