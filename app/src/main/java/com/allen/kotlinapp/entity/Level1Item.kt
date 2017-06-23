@@ -12,7 +12,7 @@ import com.chad.library.adapter.base.entity.MultiItemEntity
  * 修改备注：
  */
 
-class Level1Item(var title: String, var subTitle: String) : AbstractExpandableItem<Person>(), MultiItemEntity {
+data class Level1Item(var title: String, var subTitle: String) : AbstractExpandableItem<Person>(), MultiItemEntity {
 
     override fun getItemType(): Int {
         return ExpandableItemAdapter.TYPE_LEVEL_1

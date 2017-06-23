@@ -43,6 +43,7 @@ class ItemClickActivity : BaseActivity() {
         }
         adapter?.onItemChildClickListener = BaseQuickAdapter.OnItemChildClickListener { adapter, view, position ->
             Log.d(TAG, "onItemChildClick: ")
+
             Toast.makeText(this@ItemClickActivity, "onItemChildClick" + position, Toast.LENGTH_SHORT).show()
         }
         adapter?.onItemChildLongClickListener = BaseQuickAdapter.OnItemChildLongClickListener { adapter, view, position ->

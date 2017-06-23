@@ -7,4 +7,4 @@ package com.allen.kotlinapp.entity
  * 修改时间：
  * 修改备注：
  */
-class Video(var img: String?, var name: String?)
+data class Video(var img: String?, var name: String?)

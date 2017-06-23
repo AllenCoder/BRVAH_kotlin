@@ -10,7 +10,7 @@ import com.chad.library.adapter.base.entity.MultiItemEntity
  * 修改时间：
  * 修改备注：
  */
-class Person(var name: String, var age: Int) : MultiItemEntity {
+data class Person(var name: String, var age: Int) : MultiItemEntity {
 
     override fun getItemType(): Int {
         return ExpandableItemAdapter.TYPE_PERSON

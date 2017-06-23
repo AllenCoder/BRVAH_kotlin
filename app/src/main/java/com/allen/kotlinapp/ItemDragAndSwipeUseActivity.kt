@@ -88,24 +88,24 @@ class ItemDragAndSwipeUseActivity : BaseActivity() {
         mAdapter = ItemDragAdapter(mData!!)
         mItemDragAndSwipeCallback = ItemDragAndSwipeCallback(mAdapter)
         mItemTouchHelper = ItemTouchHelper(mItemDragAndSwipeCallback)
-        mItemTouchHelper!!.attachToRecyclerView(mRecyclerView)
+        mItemTouchHelper?.attachToRecyclerView(mRecyclerView)
 
         //mItemDragAndSwipeCallback.setDragMoveFlags(ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT | ItemTouchHelper.UP | ItemTouchHelper.DOWN);
-        mItemDragAndSwipeCallback!!.setSwipeMoveFlags(ItemTouchHelper.START or ItemTouchHelper.END)
-        mAdapter!!.enableSwipeItem()
-        mAdapter!!.setOnItemSwipeListener(onItemSwipeListener)
-        mAdapter!!.enableDragItem(mItemTouchHelper!!)
-        mAdapter!!.setOnItemDragListener(listener)
+        mItemDragAndSwipeCallback?.setSwipeMoveFlags(ItemTouchHelper.START or ItemTouchHelper.END)
+        mAdapter?.enableSwipeItem()
+        mAdapter?.setOnItemSwipeListener(onItemSwipeListener)
+        mAdapter?.enableDragItem(mItemTouchHelper!!)
+        mAdapter?.setOnItemDragListener(listener)
         //        mRecyclerView.addItemDecoration(new GridItemDecoration(this ,R.drawable.list_divider));
 
-        mRecyclerView!!.adapter = mAdapter
+        mRecyclerView?.adapter = mAdapter
         //        mRecyclerView.addOnItemTouchListener(new OnItemClickListener() {
         //            @Override
         //            public void onSimpleItemClick(final BaseQuickAdapter adapter, final View view, final int position) {
         //                ToastUtils.showShortToast("点击了" + position);
         //            }
         //        });
-        mAdapter!!.setOnItemClickListener(BaseQuickAdapter.OnItemClickListener { adapter, view, position -> ToastUtils.showShortToast("点击了" + position) })
+        mAdapter?.setOnItemClickListener(BaseQuickAdapter.OnItemClickListener { adapter, view, position -> ToastUtils.showShortToast("点击了" + position) })
     }
 
     private fun generateData(size: Int): List<String> {

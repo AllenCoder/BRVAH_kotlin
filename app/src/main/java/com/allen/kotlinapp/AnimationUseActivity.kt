@@ -50,10 +50,12 @@ class AnimationUseActivity : Activity() {
         mAnimationAdapter = AnimationAdapter()
         mAnimationAdapter?.openLoadAnimation()
         mAnimationAdapter?.setNotDoAnimationCount(mFirstPageItemCount)
-        mAnimationAdapter?.onItemClickListener=BaseQuickAdapter.OnItemClickListener{ adapter,  view,  position ->
-            ToastUtils.showShortToast("第 "+position+"Item 被点击")
+        mAnimationAdapter?.onItemClickListener = BaseQuickAdapter.OnItemClickListener { adapter, view, position ->
+            ToastUtils.showShortToast("第 " + position + "Item 被点击")
         }
-
+//        mAnimationAdapter?.openLoadAnimation(BaseAnimation
+//                                    { view -> arrayOf(ObjectAnimator.ofFloat(view, "scaleY", 1.0f, 1.1f, 1.0f), ObjectAnimator.ofFloat(view, "scaleX", 1.0f, 1.1f, 1.0f))
+//                                    })
         mAnimationAdapter?.onItemChildClickListener = BaseQuickAdapter.OnItemChildClickListener { adapter, view, position ->
             var content: String? = null
             val status = adapter.getItem(position) as Status?
