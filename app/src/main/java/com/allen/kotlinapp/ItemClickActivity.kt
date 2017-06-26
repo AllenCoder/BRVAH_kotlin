@@ -5,11 +5,15 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.MotionEvent
+import android.view.View
 import android.widget.Toast
 import com.allen.kotlinapp.adapter.ItemClickAdapter
 import com.allen.kotlinapp.base.BaseActivity
 import com.allen.kotlinapp.entity.ClickEntity
 import com.chad.library.adapter.base.BaseQuickAdapter
+import com.chad.library.adapter.base.listener.OnItemClickListener
+import com.chad.library.adapter.base.listener.SimpleClickListener
+import com.orhanobut.logger.Logger
 import java.util.*
 
 /**
@@ -54,56 +58,67 @@ class ItemClickActivity : BaseActivity() {
         /**
          * you can also use this way to solve your click Event
          */
-        //        mRecyclerView.addOnItemTouchListener(new OnItemClickListener() {
-        //            /**
-        //             * Callback method to be invoked when an item in this AdapterView has
-        //             * been clicked.
-        //             *
-        //             * @param view     The view within the AdapterView that was clicked (this
-        //             *                 will be a view provided by the adapter)
-        //             * @param position The position of the view in the adapter.
-        //             */
-        //            @Override
-        //            public void onSimpleItemClick(final BaseQuickAdapter adapter, final View view, final int position) {
-        //                Log.d(TAG, "SimpleOnItemClick: ");
-        //
-        //            }
-        //            /**
-        //             * callback method to be invoked when an chidview in this view has been
-        //             * click and held
-        //             *
-        //             * @param view     The view whihin the AbsListView that was clicked
-        //             * @param position The position of the view int the adapter
-        //             * @return true if the callback consumed the long click ,false otherwise
-        //             */
-        //            @Override
-        //            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-        //                Logger.d("onItemChildClick "+position+" be click");
-        //                Toast.makeText(ItemClickActivity.this, "onItemChildClick" + position, Toast.LENGTH_SHORT).show();
-        //
-        //            }
-        //
-        //            /**
-        //             * Callback method to be invoked when an item in this view has been clicked and held.
-        //             * @param adapter
-        //             * @param view
-        //             * @param position
-        //             */
-        //            @Override
-        //            public void onItemLongClick(final BaseQuickAdapter adapter, final View view, final int position) {
-        //                Toast.makeText(ItemClickActivity.this, "onItemLongClick" + position, Toast.LENGTH_SHORT).show();
-        //            }
-        //            /**
-        //             * Callback method to be invoked when an itemchild in this view has been clicked and held.
-        //             * @param adapter
-        //             * @param view
-        //             * @param position
-        //             */
-        //            @Override
-        //            public void onItemChildLongClick(final BaseQuickAdapter adapter, final View view, final int position) {
-        //                Toast.makeText(ItemClickActivity.this, "onItemChildLongClick" + position, Toast.LENGTH_SHORT).show();
-        //            }
-        //        });
+
+        /*  kotlin 注释
+        * 有时候，我们需要创建⼀个对某个类做了轻微改动的类的对象，
+        * ⽽不⽤为之显式声明新的⼦类。Java ⽤匿名内部类 处理这种情况。
+        * Kotlin ⽤对象表达式和对象声明对这个概念稍微概括了下。
+        * */
+        /*mRecyclerView?.addOnItemTouchListener(object : OnItemClickListener() {
+            *//**
+             * Callback method to be invoked when an item in this AdapterView has
+             * been clicked.
+
+             * @param view     The view within the AdapterView that was clicked (this
+             * *                 will be a view provided by the adapter)
+             * *
+             * @param position The position of the view in the adapter.
+             *//*
+            override fun onSimpleItemClick(adapter: BaseQuickAdapter<*, *>, view: View, position: Int) {
+                Log.d(SimpleClickListener.TAG, "SimpleOnItemClick: ")
+
+            }
+
+            *//**
+             * callback method to be invoked when an chidview in this view has been
+             * click and held
+
+             * @param view     The view whihin the AbsListView that was clicked
+             * *
+             * @param position The position of the view int the adapter
+             * *
+             * @return true if the callback consumed the long click ,false otherwise
+             *//*
+            override fun onItemChildClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
+                Logger.d("onItemChildClick $position be click")
+                Toast.makeText(this@ItemClickActivity, "onItemChildClick" + position, Toast.LENGTH_SHORT).show()
+
+            }
+
+            *//**
+             * Callback method to be invoked when an item in this view has been clicked and held.
+             * @param adapter
+             * *
+             * @param view
+             * *
+             * @param position
+             *//*
+            override fun onItemLongClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
+                Toast.makeText(this@ItemClickActivity, "onItemLongClick" + position, Toast.LENGTH_SHORT).show()
+            }
+
+            *//**
+             * Callback method to be invoked when an itemchild in this view has been clicked and held.
+             * @param adapter
+             * *
+             * @param view
+             * *
+             * @param position
+             *//*
+            override fun onItemChildLongClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
+                Toast.makeText(this@ItemClickActivity, "onItemChildLongClick" + position, Toast.LENGTH_SHORT).show()
+            }
+        })*/
 
 
     }
