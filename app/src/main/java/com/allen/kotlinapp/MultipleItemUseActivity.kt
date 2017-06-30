@@ -6,7 +6,6 @@ import android.support.v7.widget.RecyclerView
 import com.allen.kotlinapp.adapter.MultipleItemQuickAdapter
 import com.allen.kotlinapp.base.BaseActivity
 import com.allen.kotlinapp.data.DataServer
-import com.chad.library.adapter.base.BaseQuickAdapter
 
 /**
  * 文 件 名: MultipleItemUseActivity
@@ -16,7 +15,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter
  * 修改备注：
  */
 class MultipleItemUseActivity : BaseActivity() {
-    private var mRecyclerView: RecyclerView? = null
+    private lateinit var mRecyclerView: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,9 +26,9 @@ class MultipleItemUseActivity : BaseActivity() {
         val data = DataServer.getMultipleItemData()
         val multipleItemAdapter = MultipleItemQuickAdapter(this, data)
         val manager = GridLayoutManager(this, 4)
-        mRecyclerView?.layoutManager = manager
-        multipleItemAdapter.setSpanSizeLookup(BaseQuickAdapter.SpanSizeLookup { gridLayoutManager, position -> data.get(position).spanSize })
-        mRecyclerView?.adapter = multipleItemAdapter
+        mRecyclerView.layoutManager = manager
+        multipleItemAdapter.setSpanSizeLookup({ _, position -> data[position].spanSize })
+        mRecyclerView.adapter = multipleItemAdapter
     }
 
 

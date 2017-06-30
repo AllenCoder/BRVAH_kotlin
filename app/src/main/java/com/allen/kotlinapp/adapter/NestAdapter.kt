@@ -32,7 +32,7 @@ class NestAdapter : BaseQuickAdapter<Status, BaseViewHolder>(R.layout.layout_nes
         }
         helper.setText(R.id.tweetName, "Hoteis in Rio de Janeiro")
         val msg = "\"He was one of Australia's most of distinguished artistes, renowned for his portraits\""
-        (helper.getView<View>(R.id.tweetText) as TextView).setText(SpannableStringUtils.getBuilder(msg).append("landscapes and nedes").setClickSpan(clickableSpan).create())
+        (helper.getView<View>(R.id.tweetText) as TextView).text = SpannableStringUtils.getBuilder(msg).append("landscapes and nedes").setClickSpan(clickableSpan).create()
         (helper.getView<View>(R.id.tweetText) as TextView).movementMethod = LinkMovementMethod.getInstance()
     }
 

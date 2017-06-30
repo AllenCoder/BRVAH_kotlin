@@ -2,7 +2,6 @@ package com.allen.kotlinapp.adapter
 
 import com.allen.kotlinapp.R
 import com.allen.kotlinapp.entity.MySection
-import com.allen.kotlinapp.entity.Video
 import com.chad.library.adapter.base.BaseSectionQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 
@@ -33,7 +32,7 @@ class SectionAdapter constructor(layoutResId: Int, sectionHeadResId: Int, data: 
 
 
     override fun convert(helper: BaseViewHolder, item: MySection) {
-        val video = item.t as Video
+        val video = item.t
         when (helper.layoutPosition % 2) {
             0 -> helper.setImageResource(R.id.iv, R.mipmap.m_img1)
             1 -> helper.setImageResource(R.id.iv, R.mipmap.m_img2)

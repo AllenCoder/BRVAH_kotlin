@@ -27,11 +27,11 @@ import java.util.*
  * 修改备注：
  */
 class ItemDragAndSwipeUseActivity : BaseActivity() {
-    private var mRecyclerView: RecyclerView? = null
-    private var mData: List<String>? = null
-    private var mAdapter: ItemDragAdapter? = null
-    private var mItemTouchHelper: ItemTouchHelper? = null
-    private var mItemDragAndSwipeCallback: ItemDragAndSwipeCallback? = null
+    private lateinit var mRecyclerView: RecyclerView
+    private lateinit var mData: List<String>
+    private lateinit var mAdapter: ItemDragAdapter
+    private lateinit var mItemTouchHelper: ItemTouchHelper
+    private lateinit var mItemDragAndSwipeCallback: ItemDragAndSwipeCallback
 
     protected override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +39,7 @@ class ItemDragAndSwipeUseActivity : BaseActivity() {
         setBackBtn()
         setTitle("ItemDrag  And Swipe")
         mRecyclerView = findViewById(R.id.rv_list) as RecyclerView
-        mRecyclerView!!.layoutManager = LinearLayoutManager(this)
+        mRecyclerView.layoutManager = LinearLayoutManager(this)
         mData = generateData(50)
         val listener = object : OnItemDragListener {
             override fun onItemDragStart(viewHolder: RecyclerView.ViewHolder, pos: Int) {
@@ -85,27 +85,27 @@ class ItemDragAndSwipeUseActivity : BaseActivity() {
             }
         }
 
-        mAdapter = ItemDragAdapter(mData!!)
+        mAdapter = ItemDragAdapter(mData)
         mItemDragAndSwipeCallback = ItemDragAndSwipeCallback(mAdapter)
         mItemTouchHelper = ItemTouchHelper(mItemDragAndSwipeCallback)
-        mItemTouchHelper?.attachToRecyclerView(mRecyclerView)
+        mItemTouchHelper.attachToRecyclerView(mRecyclerView)
 
         //mItemDragAndSwipeCallback.setDragMoveFlags(ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT | ItemTouchHelper.UP | ItemTouchHelper.DOWN);
-        mItemDragAndSwipeCallback?.setSwipeMoveFlags(ItemTouchHelper.START or ItemTouchHelper.END)
-        mAdapter?.enableSwipeItem()
-        mAdapter?.setOnItemSwipeListener(onItemSwipeListener)
-        mAdapter?.enableDragItem(mItemTouchHelper!!)
-        mAdapter?.setOnItemDragListener(listener)
+        mItemDragAndSwipeCallback.setSwipeMoveFlags(ItemTouchHelper.START or ItemTouchHelper.END)
+        mAdapter.enableSwipeItem()
+        mAdapter.setOnItemSwipeListener(onItemSwipeListener)
+        mAdapter.enableDragItem(mItemTouchHelper)
+        mAdapter.setOnItemDragListener(listener)
         //        mRecyclerView.addItemDecoration(new GridItemDecoration(this ,R.drawable.list_divider));
 
-        mRecyclerView?.adapter = mAdapter
+        mRecyclerView.adapter = mAdapter
         //        mRecyclerView.addOnItemTouchListener(new OnItemClickListener() {
         //            @Override
         //            public void onSimpleItemClick(final BaseQuickAdapter adapter, final View view, final int position) {
         //                ToastUtils.showShortToast("点击了" + position);
         //            }
         //        });
-        mAdapter?.setOnItemClickListener(BaseQuickAdapter.OnItemClickListener { adapter, view, position -> ToastUtils.showShortToast("点击了" + position) })
+        mAdapter.onItemClickListener = BaseQuickAdapter.OnItemClickListener { adapter, view, position -> ToastUtils.showShortToast("点击了" + position) }
     }
 
     private fun generateData(size: Int): List<String> {

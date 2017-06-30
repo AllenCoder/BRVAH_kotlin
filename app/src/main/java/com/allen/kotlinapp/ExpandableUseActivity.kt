@@ -19,9 +19,9 @@ import java.util.*
  * 修改备注：
  */
 class ExpandableUseActivity : BaseActivity() {
-    private var mRecyclerView: RecyclerView? = null
-    private var adapter: ExpandableItemAdapter? = null
-    private var list: ArrayList<MultiItemEntity>? = null
+    private lateinit var mRecyclerView: RecyclerView
+    private lateinit var adapter: ExpandableItemAdapter
+    private lateinit var list: ArrayList<MultiItemEntity>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setBackBtn()
@@ -31,19 +31,19 @@ class ExpandableUseActivity : BaseActivity() {
         mRecyclerView = findViewById(R.id.rv) as RecyclerView
 
         list = generateData()
-        adapter = ExpandableItemAdapter(list!!)
+        adapter = ExpandableItemAdapter(list)
 
         val manager = GridLayoutManager(this, 3)
         manager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
             override fun getSpanSize(position: Int): Int {
-                return if (adapter?.getItemViewType(position) == ExpandableItemAdapter.TYPE_PERSON) 1 else manager.spanCount
+                return if (adapter.getItemViewType(position) == ExpandableItemAdapter.TYPE_PERSON) 1 else manager.spanCount
             }
         }
 
-        mRecyclerView?.adapter = adapter
+        mRecyclerView.adapter = adapter
         // important! setLayoutManager should be called after setAdapter
-        mRecyclerView?.layoutManager = manager
-        adapter?.expandAll()
+        mRecyclerView.layoutManager = manager
+        adapter.expandAll()
     }
 
     private fun generateData(): ArrayList<MultiItemEntity> {

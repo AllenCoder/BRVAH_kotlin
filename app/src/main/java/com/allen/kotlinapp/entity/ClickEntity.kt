@@ -9,7 +9,7 @@ import com.chad.library.adapter.base.entity.MultiItemEntity
  * 修改时间：
  * 修改备注：
  */
-class ClickEntity(var Type: Int) : MultiItemEntity {
+ class ClickEntity(var Type: Int) : MultiItemEntity {
 
     override fun getItemType(): Int {
         return Type

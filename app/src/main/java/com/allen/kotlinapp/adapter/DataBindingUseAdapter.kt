@@ -20,12 +20,7 @@ import com.chad.library.adapter.base.BaseViewHolder
  */
 class DataBindingUseAdapter(layoutResId: Int, data: List<Movie>) : BaseQuickAdapter<Movie, DataBindingUseAdapter.MovieViewHolder>(layoutResId, data) {
 
-    private val mPresenter: MoviePresenter
-
-    init {
-
-        mPresenter = MoviePresenter()
-    }
+    private val mPresenter: MoviePresenter = MoviePresenter()
 
     override fun convert(helper: MovieViewHolder, item: Movie) {
         val binding = helper.binding

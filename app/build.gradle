@@ -43,6 +43,7 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     // Data Binding
     kapt 'com.android.databinding:compiler:2.3.1'
+    compile 'jp.wasabeef:takt:1.0.5'
 
 }
 kapt {

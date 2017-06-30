@@ -18,10 +18,10 @@ import com.allen.kotlinapp.data.DataServer
  * 修改备注：
  */
 class EmptyViewUseActivity : BaseActivity(), View.OnClickListener {
-    private var mRecyclerView: RecyclerView? = null
-    private var mQuickAdapter: QuickAdapter? = null
-    private var notDataView: View? = null
-    private var errorView: View? = null
+    private lateinit var mRecyclerView: RecyclerView
+    private lateinit var mQuickAdapter: QuickAdapter
+    private lateinit var notDataView: View
+    private lateinit var errorView: View
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,26 +30,26 @@ class EmptyViewUseActivity : BaseActivity(), View.OnClickListener {
         setContentView(R.layout.activity_empty_view_use)
         findViewById(R.id.btn_reset).setOnClickListener(this)
         mRecyclerView = findViewById(R.id.rv_list) as RecyclerView
-        mRecyclerView?.setHasFixedSize(true)
-        mRecyclerView?.layoutManager = LinearLayoutManager(this)
+        mRecyclerView.setHasFixedSize(true)
+        mRecyclerView.layoutManager = LinearLayoutManager(this)
 
-        notDataView = layoutInflater.inflate(R.layout.empty_view, mRecyclerView?.parent as ViewGroup, false)
-        notDataView?.setOnClickListener { onRefresh() }
-        errorView = layoutInflater.inflate(R.layout.error_view, mRecyclerView?.parent as ViewGroup, false)
-        errorView?.setOnClickListener { onRefresh() }
+        notDataView = layoutInflater.inflate(R.layout.empty_view, mRecyclerView.parent as ViewGroup, false)
+        notDataView.setOnClickListener { onRefresh() }
+        errorView = layoutInflater.inflate(R.layout.error_view, mRecyclerView.parent as ViewGroup, false)
+        errorView.setOnClickListener { onRefresh() }
         initAdapter()
         onRefresh()
     }
 
     private fun initAdapter() {
         mQuickAdapter = QuickAdapter(0)
-        mRecyclerView?.adapter = mQuickAdapter
+        mRecyclerView.adapter = mQuickAdapter
     }
 
     override fun onClick(v: View) {
         mError = true
         mNoData = true
-        mQuickAdapter?.setNewData(null)
+        mQuickAdapter.setNewData(null)
         onRefresh()
     }
 
@@ -57,17 +57,17 @@ class EmptyViewUseActivity : BaseActivity(), View.OnClickListener {
     private var mNoData = true
 
     private fun onRefresh() {
-        mQuickAdapter?.setEmptyView(R.layout.loading_view, mRecyclerView?.parent as ViewGroup)
+        mQuickAdapter.setEmptyView(R.layout.loading_view, mRecyclerView.parent as ViewGroup)
         Handler().postDelayed({
             if (mError) {
-                mQuickAdapter?.emptyView = errorView
+                mQuickAdapter.emptyView = errorView
                 mError = false
             } else {
                 if (mNoData) {
-                    mQuickAdapter?.emptyView = notDataView
+                    mQuickAdapter.emptyView = notDataView
                     mNoData = false
                 } else {
-                    mQuickAdapter?.setNewData(DataServer.getSampleData(10))
+                    mQuickAdapter.setNewData(DataServer.getSampleData(10))
                 }
             }
         }, 1000)

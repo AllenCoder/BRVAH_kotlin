@@ -19,8 +19,8 @@ import java.util.*
  */
 class DataBindingUseActivity : BaseActivity() {
 
-    internal var mRecyclerView: RecyclerView? = null
-    internal var mAdapter: DataBindingUseAdapter? = null
+    internal lateinit var mRecyclerView: RecyclerView
+    internal lateinit var mAdapter: DataBindingUseAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,14 +30,14 @@ class DataBindingUseActivity : BaseActivity() {
 
         mRecyclerView = findViewById(R.id.rv) as RecyclerView
         mAdapter = DataBindingUseAdapter(R.layout.item_movie, genData())
-        mRecyclerView?.layoutManager = LinearLayoutManager(this)
-        mRecyclerView?.adapter = mAdapter
-        mAdapter?.onItemClickListener = BaseQuickAdapter.OnItemClickListener { adapter, view, position -> ToastUtils.showShortToast("onItemClick") }
-        mAdapter?.onItemChildLongClickListener = BaseQuickAdapter.OnItemChildLongClickListener { adapter, view, position ->
+        mRecyclerView.layoutManager = LinearLayoutManager(this)
+        mRecyclerView.adapter = mAdapter
+        mAdapter.onItemClickListener = BaseQuickAdapter.OnItemClickListener { adapter, view, position -> ToastUtils.showShortToast("onItemClick") }
+        mAdapter.onItemChildLongClickListener = BaseQuickAdapter.OnItemChildLongClickListener { adapter, view, position ->
             ToastUtils.showShortToast("onItemChildLongClick")
             true
         }
-        mAdapter?.onItemLongClickListener = BaseQuickAdapter.OnItemLongClickListener { adapter, view, position ->
+        mAdapter.onItemLongClickListener = BaseQuickAdapter.OnItemLongClickListener { adapter, view, position ->
             ToastUtils.showShortToast("onItemLongClick")
             true
         }

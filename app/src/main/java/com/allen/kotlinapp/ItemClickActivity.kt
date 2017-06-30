@@ -11,9 +11,6 @@ import com.allen.kotlinapp.adapter.ItemClickAdapter
 import com.allen.kotlinapp.base.BaseActivity
 import com.allen.kotlinapp.entity.ClickEntity
 import com.chad.library.adapter.base.BaseQuickAdapter
-import com.chad.library.adapter.base.listener.OnItemClickListener
-import com.chad.library.adapter.base.listener.SimpleClickListener
-import com.orhanobut.logger.Logger
 import java.util.*
 
 /**
@@ -55,6 +52,12 @@ class ItemClickActivity : BaseActivity() {
             Toast.makeText(this@ItemClickActivity, "onItemChildLongClick" + position, Toast.LENGTH_SHORT).show()
             true
         }
+        mRecyclerView?.addOnItemTouchListener(object :com.chad.library.adapter.base.listener.OnItemClickListener(){
+            override fun onSimpleItemClick(p0: BaseQuickAdapter<*, *>?, p1: View?, p2: Int) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+
+        })
         /**
          * you can also use this way to solve your click Event
          */

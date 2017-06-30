@@ -25,9 +25,9 @@ import com.chad.library.adapter.base.listener.OnItemClickListener
  * 修改备注：
  */
 class PullToRefreshUseActivity : BaseActivity(), BaseQuickAdapter.RequestLoadMoreListener, SwipeRefreshLayout.OnRefreshListener {
-    private var mRecyclerView: RecyclerView? = null
-    private var pullToRefreshAdapter: PullToRefreshAdapter? = null
-    private var mSwipeRefreshLayout: SwipeRefreshLayout? = null
+    private lateinit  var mRecyclerView: RecyclerView
+    private lateinit  var pullToRefreshAdapter: PullToRefreshAdapter
+    private lateinit  var mSwipeRefreshLayout: SwipeRefreshLayout
 
     private val delayMillis = 1000
 
@@ -42,9 +42,9 @@ class PullToRefreshUseActivity : BaseActivity(), BaseQuickAdapter.RequestLoadMor
         setContentView(R.layout.activity_main)
         mRecyclerView = findViewById(R.id.rv_list) as RecyclerView
         mSwipeRefreshLayout = findViewById(R.id.swipeLayout) as SwipeRefreshLayout
-        mSwipeRefreshLayout?.setOnRefreshListener(this)
-        mSwipeRefreshLayout?.setColorSchemeColors(Color.rgb(47, 223, 189))
-        mRecyclerView?.layoutManager = LinearLayoutManager(this)
+        mSwipeRefreshLayout.setOnRefreshListener(this)
+        mSwipeRefreshLayout.setColorSchemeColors(Color.rgb(47, 223, 189))
+        mRecyclerView.layoutManager = LinearLayoutManager(this)
         setTitle("Pull TO Refresh Use")
         setBackBtn()
         initAdapter()
@@ -52,62 +52,62 @@ class PullToRefreshUseActivity : BaseActivity(), BaseQuickAdapter.RequestLoadMor
     }
 
     private fun addHeadView() {
-        val headView = getLayoutInflater().inflate(R.layout.head_view, mRecyclerView?.parent as ViewGroup, false)
-        headView.findViewById(R.id.iv).setVisibility(View.GONE)
+        val headView = layoutInflater.inflate(R.layout.head_view, mRecyclerView.parent as ViewGroup, false)
+        headView.findViewById(R.id.iv).visibility = View.GONE
         (headView.findViewById(R.id.tv) as TextView).text = "change load view"
-        headView.setOnClickListener(View.OnClickListener {
+        headView.setOnClickListener({
             mLoadMoreEndGone = true
-            pullToRefreshAdapter?.setLoadMoreView(CustomLoadMoreView())
-            mRecyclerView?.adapter = pullToRefreshAdapter
+            pullToRefreshAdapter.setLoadMoreView(CustomLoadMoreView())
+            mRecyclerView.adapter = pullToRefreshAdapter
             Toast.makeText(this@PullToRefreshUseActivity, "change complete", Toast.LENGTH_LONG).show()
         })
-        pullToRefreshAdapter?.addHeaderView(headView)
+        pullToRefreshAdapter.addHeaderView(headView)
     }
 
     override fun onLoadMoreRequested() {
-        mSwipeRefreshLayout?.isEnabled = false
-        if (pullToRefreshAdapter?.getData()?.size!! < PAGE_SIZE) {
-            pullToRefreshAdapter?.loadMoreEnd(true)
+        mSwipeRefreshLayout.isEnabled = false
+        if (pullToRefreshAdapter.data.size < PAGE_SIZE) {
+            pullToRefreshAdapter.loadMoreEnd(true)
         } else {
             if (mCurrentCounter >= TOTAL_COUNTER) {
                 //                    pullToRefreshAdapter.loadMoreEnd();//default visible
-                pullToRefreshAdapter?.loadMoreEnd(mLoadMoreEndGone)//true is gone,false is visible
+                pullToRefreshAdapter.loadMoreEnd(mLoadMoreEndGone)//true is gone,false is visible
             } else {
                 if (isErr) {
-                    pullToRefreshAdapter?.addData(DataServer.getSampleData(PAGE_SIZE))
-                    mCurrentCounter = pullToRefreshAdapter?.getData()?.size!!
-                    pullToRefreshAdapter?.loadMoreComplete()
+                    pullToRefreshAdapter.addData(DataServer.getSampleData(PAGE_SIZE))
+                    mCurrentCounter = pullToRefreshAdapter.data.size
+                    pullToRefreshAdapter.loadMoreComplete()
                 } else {
                     isErr = true
                     Toast.makeText(this@PullToRefreshUseActivity, R.string.network_err, Toast.LENGTH_LONG).show()
-                    pullToRefreshAdapter?.loadMoreFail()
+                    pullToRefreshAdapter.loadMoreFail()
 
                 }
             }
-            mSwipeRefreshLayout?.isEnabled = true
+            mSwipeRefreshLayout.isEnabled = true
         }
     }
 
     override fun onRefresh() {
-        pullToRefreshAdapter?.setEnableLoadMore(false)
+        pullToRefreshAdapter.setEnableLoadMore(false)
         Handler().postDelayed({
-            pullToRefreshAdapter?.setNewData(DataServer.getSampleData(PAGE_SIZE))
+            pullToRefreshAdapter.setNewData(DataServer.getSampleData(PAGE_SIZE))
             isErr = false
             mCurrentCounter = PAGE_SIZE
-            mSwipeRefreshLayout?.isRefreshing = false
-            pullToRefreshAdapter?.setEnableLoadMore(true)
+            mSwipeRefreshLayout.isRefreshing = false
+            pullToRefreshAdapter.setEnableLoadMore(true)
         }, delayMillis.toLong())
     }
 
     private fun initAdapter() {
         pullToRefreshAdapter = PullToRefreshAdapter()
-        pullToRefreshAdapter?.setOnLoadMoreListener(this, mRecyclerView)
-        pullToRefreshAdapter?.openLoadAnimation(BaseQuickAdapter.SLIDEIN_LEFT)
+        pullToRefreshAdapter.setOnLoadMoreListener(this, mRecyclerView)
+        pullToRefreshAdapter.openLoadAnimation(BaseQuickAdapter.SLIDEIN_LEFT)
         //        pullToRefreshAdapter.setPreLoadNumber(3);
-        mRecyclerView?.adapter = pullToRefreshAdapter
-        mCurrentCounter = pullToRefreshAdapter?.getData()?.size!!
+        mRecyclerView.adapter = pullToRefreshAdapter
+        mCurrentCounter = pullToRefreshAdapter.data.size
 
-        mRecyclerView?.addOnItemTouchListener(object : OnItemClickListener() {
+        mRecyclerView.addOnItemTouchListener(object : OnItemClickListener() {
             override fun onSimpleItemClick(adapter: BaseQuickAdapter<*, *>, view: View, position: Int) {
                 Toast.makeText(this@PullToRefreshUseActivity, Integer.toString(position), Toast.LENGTH_LONG).show()
             }

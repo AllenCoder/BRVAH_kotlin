@@ -19,8 +19,8 @@ import java.util.*
  * 修改备注：
  */
 class HomeActivity : AppCompatActivity() {
-    private var mDataList: ArrayList<HomeItem>? = null
-    private var mRecyclerView: RecyclerView? = null
+    private lateinit var mDataList: ArrayList<HomeItem>
+    private lateinit var mRecyclerView: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,20 +32,20 @@ class HomeActivity : AppCompatActivity() {
 
     private fun initView() {
         mRecyclerView = findViewById(R.id.rv_list) as RecyclerView
-        mRecyclerView!!.layoutManager = GridLayoutManager(this, 2)
+        mRecyclerView.layoutManager = GridLayoutManager(this, 2)
     }
 
     private fun initAdapter() {
-        val homeAdapter = HomeAdapter(R.layout.home_item_view, mDataList!!)
+        val homeAdapter = HomeAdapter(R.layout.home_item_view, mDataList)
         homeAdapter.openLoadAnimation()
-        val top = layoutInflater.inflate(R.layout.top_view, mRecyclerView!!.parent as ViewGroup, false)
+        val top = layoutInflater.inflate(R.layout.top_view, mRecyclerView.parent as ViewGroup, false)
         homeAdapter.addHeaderView(top)
         homeAdapter.onItemClickListener = BaseQuickAdapter.OnItemClickListener { adapter, view, position ->
             val intent = Intent(this@HomeActivity, ACTIVITY[position])
             startActivity(intent)
         }
         homeAdapter.notifyDataSetChanged()
-        mRecyclerView!!.adapter = homeAdapter
+        mRecyclerView.adapter = homeAdapter
     }
 
     private fun initData() {
@@ -55,7 +55,7 @@ class HomeActivity : AppCompatActivity() {
             item.title = (TITLE[i])
             item.activity = (ACTIVITY[i])
             item.imageResource = (IMG[i])
-            mDataList!!.add(item)
+            mDataList.add(item)
         }
     }
 

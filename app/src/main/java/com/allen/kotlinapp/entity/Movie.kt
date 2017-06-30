@@ -7,4 +7,4 @@ package com.allen.kotlinapp.entity
  * 修改时间：
  * 修改备注：
  */
-class Movie(var name: String, var length: Int, var price: Int, var content: String)
+ class Movie(var name: String, var length: Int, var price: Int, var content: String)

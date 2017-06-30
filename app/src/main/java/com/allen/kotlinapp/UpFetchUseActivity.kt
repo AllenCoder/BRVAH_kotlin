@@ -18,8 +18,8 @@ import java.util.*
  */
 
 class UpFetchUseActivity : BaseActivity() {
-    internal var mRecyclerView: RecyclerView? = null
-    internal var mAdapter: UpFetchAdapter? = null
+    internal lateinit  var mRecyclerView: RecyclerView
+    internal lateinit  var mAdapter: UpFetchAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,14 +30,14 @@ class UpFetchUseActivity : BaseActivity() {
         mRecyclerView = findViewById(R.id.rv) as RecyclerView
         mAdapter = UpFetchAdapter()
         mRecyclerView?.layoutManager = LinearLayoutManager(this)
-        mRecyclerView?.adapter = mAdapter
-        mAdapter?.setNewData(genData())
-        mAdapter?.isUpFetchEnable = true
+        mRecyclerView.adapter = mAdapter
+        mAdapter.setNewData(genData())
+        mAdapter.isUpFetchEnable = true
         /**
          * start fetch when scroll to position 2, default is 1.
          */
-        mAdapter?.setStartUpFetchPosition(2)
-        mAdapter?.setUpFetchListener(BaseQuickAdapter.UpFetchListener { startUpFetch() })
+        mAdapter.setStartUpFetchPosition(2)
+        mAdapter.setUpFetchListener(BaseQuickAdapter.UpFetchListener { startUpFetch() })
     }
 
     private var count: Int = 0
@@ -47,19 +47,19 @@ class UpFetchUseActivity : BaseActivity() {
         /**
          * set fetching on when start network request.
          */
-        mAdapter?.isUpFetching = true
+        mAdapter.isUpFetching = true
         /**
          * get data from internet.
          */
-        mRecyclerView?.postDelayed({
-            mAdapter?.addData(0, genData())
+        mRecyclerView.postDelayed({
+            mAdapter.addData(0, genData())
             /**
              * set fetching off when network request ends.
              */
             /**
              * set fetching off when network request ends.
              */
-            mAdapter?.isUpFetching = false
+            mAdapter.isUpFetching = false
             /**
              * set fetch enable false when you don't need anymore.
              */
@@ -67,7 +67,7 @@ class UpFetchUseActivity : BaseActivity() {
              * set fetch enable false when you don't need anymore.
              */
             if (count > 5) {
-                mAdapter?.isUpFetchEnable = false
+                mAdapter.isUpFetchEnable = false
             }
         }, 300)
     }

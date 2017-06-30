@@ -53,7 +53,7 @@ class QuickAdapter(dataSize: Int) : BaseQuickAdapter<Status, BaseViewHolder>(R.l
 ```
 Adapter
 ```java
- adapter?.onItemClickListener = BaseQuickAdapter.OnItemClickListener { adapter, view, position ->
+ adapter.onItemClickListener = BaseQuickAdapter.OnItemClickListener { adapter, view, position ->
             Log.d(TAG, "onItemClick: ")
             Toast.makeText(this@ItemClickActivity, "onItemClick" + position, Toast.LENGTH_SHORT).show()
         }
@@ -87,8 +87,8 @@ Adapter
                 recyclerView.setHasFixedSize(true)
 
                 nestAdapter = NestAdapter()
-                nestAdapter?.setOnItemClickListener(this)
-                nestAdapter?.setOnItemChildClickListener(this)
+                nestAdapter.setOnItemClickListener(this)
+                nestAdapter.setOnItemChildClickListener(this)
                 recyclerView.adapter = nestAdapter
             }
         }
@@ -96,28 +96,28 @@ Adapter
 ```
 Activity
 ```java
-   mAnimationAdapter?.onItemChildClickListener = BaseQuickAdapter.OnItemChildClickListener { adapter, view, position ->
-            var content: String? = null
-            val status = adapter.getItem(position) as Status?
-            when (view.id) {
-                R.id.img -> {
-                    content = "img:" + status?.userAvatar
-                    Toast.makeText(this@AnimationUseActivity, content, Toast.LENGTH_LONG).show()
-                }
-                R.id.tweetName -> {
-                    content = "name:" + status?.userName
-                    Toast.makeText(this@AnimationUseActivity, content, Toast.LENGTH_LONG).show()
-                }
-                R.id.tweetText -> {
-                    content = "tweetText:" + status?.userName
-                    Toast.makeText(this@AnimationUseActivity, content, Toast.LENGTH_LONG).show()
-                }
-            }// you have set clickspan .so there should not solve any click event ,just empty
-        }
+           mAnimationAdapter.onItemChildClickListener = BaseQuickAdapter.OnItemChildClickListener { adapter, view, position ->
+               var content: String
+               val status = adapter.getItem(position) as Status
+               when (view.id) {
+                   R.id.img -> {
+                       content = "img:" + status.userAvatar
+                       Toast.makeText(this@AnimationUseActivity, content, Toast.LENGTH_LONG).show()
+                   }
+                   R.id.tweetName -> {
+                       content = "name:" + status.userName
+                       Toast.makeText(this@AnimationUseActivity, content, Toast.LENGTH_LONG).show()
+                   }
+                   R.id.tweetText -> {
+                       content = "tweetText:" + status.userName
+                       Toast.makeText(this@AnimationUseActivity, content, Toast.LENGTH_LONG).show()
+                   }
+               }// you have set clickspan .so there should not solve any click event ,just empty
+           }
 ```
 # 设置 it item long click
 ```java
-  adapter?.onItemLongClickListener = BaseQuickAdapter.OnItemLongClickListener { adapter, view, position ->
+  adapter.onItemLongClickListener = BaseQuickAdapter.OnItemLongClickListener { adapter, view, position ->
             Log.d(TAG, "onItemLongClick: ")
             Toast.makeText(this@ItemClickActivity, "onItemLongClick" + position, Toast.LENGTH_SHORT).show()
             true
@@ -132,7 +132,7 @@ Activity
 ```
 然后
 ```java
- adapter?.onItemChildLongClickListener = BaseQuickAdapter.OnItemChildLongClickListener { adapter, view, position ->
+ adapter.onItemChildLongClickListener = BaseQuickAdapter.OnItemChildLongClickListener { adapter, view, position ->
             Log.d(TAG, "onItemChildLongClick: ")
             Toast.makeText(this@ItemClickActivity, "onItemChildLongClick" + position, Toast.LENGTH_SHORT).show()
             true
@@ -145,17 +145,17 @@ Activity
 
 ```java
 // 一行代码搞定（默认为渐显效果）
-  mAnimationAdapter?.openLoadAnimation()
+  mAnimationAdapter.openLoadAnimation()
 ```
 不喜欢渐显动画可以这样更换
 ```java
 // 默认提供5种方法（渐显、缩放、从下到上，从左到右、从右到左）
-mAnimationAdapter?.openLoadAnimation(BaseQuickAdapter.ALPHAIN);
+mAnimationAdapter.openLoadAnimation(BaseQuickAdapter.ALPHAIN);
 ```
 还是没你喜欢的，你可以自定义
 ```java
 // 自定义动画如此轻松
-  mAnimationAdapter?.openLoadAnimation(BaseAnimation 
+  mAnimationAdapter.openLoadAnimation(BaseAnimation 
                                     { view -> arrayOf(ObjectAnimator.ofFloat(view, "scaleY", 1.0f, 1.1f, 1.0f), ObjectAnimator.ofFloat(view, "scaleX", 1.0f, 1.1f, 1.0f))
                                     })
 ```
@@ -163,8 +163,8 @@ mAnimationAdapter?.openLoadAnimation(BaseQuickAdapter.ALPHAIN);
 
 ```java
 // add
-mQuickAdapter?.addHeaderView(getView());
-mQuickAdapter?.addFooterView(getView());
+mQuickAdapter.addHeaderView(getView());
+mQuickAdapter.addFooterView(getView());
 // remove
 removeHeaderView(getView);
 removeFooterView(getView);
@@ -247,7 +247,7 @@ class MultipleItemQuickAdapter(context: Context, data: List<MultipleItem>) : Bas
 # 使用setEmptyView
 
 ```java
-mQuickAdapter?.setEmptyView(getView());
+mQuickAdapter.setEmptyView(getView());
 ```
 # 使用拖拽与滑动删除
 
@@ -306,20 +306,20 @@ class ItemDragAdapter(data: List<String>) : BaseItemDraggableAdapter<String, Bas
 }
 
 
-   mAdapter = ItemDragAdapter(mData!!)
+   mAdapter = ItemDragAdapter(mData)
         mItemDragAndSwipeCallback = ItemDragAndSwipeCallback(mAdapter)
         mItemTouchHelper = ItemTouchHelper(mItemDragAndSwipeCallback)
-        mItemTouchHelper?.attachToRecyclerView(mRecyclerView)
+        mItemTouchHelper.attachToRecyclerView(mRecyclerView)
 
         //mItemDragAndSwipeCallback.setDragMoveFlags(ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT | ItemTouchHelper.UP | ItemTouchHelper.DOWN);
-        mItemDragAndSwipeCallback?.setSwipeMoveFlags(ItemTouchHelper.START or ItemTouchHelper.END)
-        mAdapter?.enableSwipeItem()
-        mAdapter?.setOnItemSwipeListener(onItemSwipeListener)
-        mAdapter?.enableDragItem(mItemTouchHelper!!)
-        mAdapter?.setOnItemDragListener(listener)
+        mItemDragAndSwipeCallback.setSwipeMoveFlags(ItemTouchHelper.START or ItemTouchHelper.END)
+        mAdapter.enableSwipeItem()
+        mAdapter.setOnItemSwipeListener(onItemSwipeListener)
+        mAdapter.enableDragItem(mItemTouchHelper)
+        mAdapter.setOnItemDragListener(listener)
         //        mRecyclerView.addItemDecoration(new GridItemDecoration(this ,R.drawable.list_divider));
 
-        mRecyclerView?.adapter = mAdapter
+        mRecyclerView.adapter = mAdapter
 ```
 
 # Expandable Item

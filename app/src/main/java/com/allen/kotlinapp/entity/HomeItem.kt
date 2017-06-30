@@ -7,8 +7,8 @@ package com.allen.kotlinapp.entity
  * 修改时间：
  * 修改备注：
  */
-class HomeItem {
-    var title: String? = null
-    var activity: Class<*>? = null
-    var imageResource: Int = 0
+ class HomeItem(var title: String?, var activity: Class<*>? = null,
+                    var imageResource: Int = 0) {
+    constructor() : this(null)
+
 }
