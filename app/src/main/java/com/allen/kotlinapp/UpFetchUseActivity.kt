@@ -7,6 +7,8 @@ import com.allen.kotlinapp.adapter.UpFetchAdapter
 import com.allen.kotlinapp.base.BaseActivity
 import com.allen.kotlinapp.entity.Movie
 import com.chad.library.adapter.base.BaseQuickAdapter
+import kotlinx.coroutines.experimental.android.UI
+import kotlinx.coroutines.experimental.async
 import java.util.*
 
 /**
@@ -29,7 +31,7 @@ class UpFetchUseActivity : BaseActivity() {
 
         mRecyclerView = findViewById(R.id.rv) as RecyclerView
         mAdapter = UpFetchAdapter()
-        mRecyclerView?.layoutManager = LinearLayoutManager(this)
+        mRecyclerView.layoutManager = LinearLayoutManager(this)
         mRecyclerView.adapter = mAdapter
         mAdapter.setNewData(genData())
         mAdapter.isUpFetchEnable = true
@@ -51,7 +53,7 @@ class UpFetchUseActivity : BaseActivity() {
         /**
          * get data from internet.
          */
-        mRecyclerView.postDelayed({
+        async(UI){
             mAdapter.addData(0, genData())
             /**
              * set fetching off when network request ends.
@@ -69,7 +71,10 @@ class UpFetchUseActivity : BaseActivity() {
             if (count > 5) {
                 mAdapter.isUpFetchEnable = false
             }
-        }, 300)
+        }
+//        mRecyclerView.postDelayed({
+//
+//        }, 300)
     }
 
 

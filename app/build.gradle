@@ -44,19 +44,16 @@ dependencies {
     // Data Binding
     kapt 'com.android.databinding:compiler:2.3.1'
     compile 'jp.wasabeef:takt:1.0.5'
-
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    compile "org.jetbrains.anko:anko-sdk25:$anko_version"
+    compile "org.jetbrains.anko:anko-sdk25-coroutines:$anko_version"
+    compile "org.jetbrains.anko:anko-appcompat-v7:$anko_version"
 }
 kapt {
     generateStubs = true
 }
-//buildscript {
-//    ext.kotlin_version = '1.1.2-5'
-//    repositories {
-//        jcenter()
-//    }
-//    dependencies {
-//        classpath 'com.android.tools.build:gradle:2.3.1'
-//        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-//        classpath "org.jetbrains.kotlin:kotlin-android-extensions:$kotlin_version"
-//    }
-//}
+kotlin {
+    experimental {
+        coroutines "enable"
+    }
+}

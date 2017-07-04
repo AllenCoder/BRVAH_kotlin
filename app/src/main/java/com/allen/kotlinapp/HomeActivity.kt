@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import com.allen.kotlinapp.adapter.HomeAdapter
 import com.allen.kotlinapp.entity.HomeItem
 import com.chad.library.adapter.base.BaseQuickAdapter
+import org.jetbrains.anko.startActivity
 import java.util.*
 
 /**
@@ -43,6 +44,7 @@ class HomeActivity : AppCompatActivity() {
         homeAdapter.onItemClickListener = BaseQuickAdapter.OnItemClickListener { adapter, view, position ->
             val intent = Intent(this@HomeActivity, ACTIVITY[position])
             startActivity(intent)
+            startActivity<HomeActivity>()
         }
         homeAdapter.notifyDataSetChanged()
         mRecyclerView.adapter = homeAdapter
