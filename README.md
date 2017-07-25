@@ -2,6 +2,8 @@
 
 # [BaseRecyclerViewAdapterHelper](https://github.com/CymChad/BaseRecyclerViewAdapterHelper)
 
+# [中文参考文档](https://github.com/AllenCoder/BRVAH_kotlin/blob/master/README-CN.md)
+
 A powerful and flexible RecyclerViewAdapter is welcome to use. (Like you can Star )
 
 # What can it do?（[Download apk](https://fir.im/s91g)）
