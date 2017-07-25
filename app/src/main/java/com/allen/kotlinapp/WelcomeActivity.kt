@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.support.v7.app.AppCompatActivity
+import com.orhanobut.logger.Logger
 
 /**
  * 文 件 名: WelcomeActivity
@@ -13,7 +14,6 @@ import android.support.v7.app.AppCompatActivity
  * 修改备注：
  */
 class WelcomeActivity : AppCompatActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_welcome)
@@ -21,6 +21,7 @@ class WelcomeActivity : AppCompatActivity() {
             val intent = Intent(this@WelcomeActivity, HomeActivity::class.java)
             startActivity(intent)
             finish()
+            Logger.d(this@WelcomeActivity)
         }, 2000)
     }
 }

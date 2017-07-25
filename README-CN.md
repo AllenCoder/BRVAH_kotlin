@@ -1,23 +1,22 @@
-# This is the Kotlin version of BaseRecyclerViewAdapterHelper using Demo
+# 这是Kotlin版本的BaseRecyclerViewAdapterHelper的使用Demo
 
 # [BaseRecyclerViewAdapterHelper](https://github.com/CymChad/BaseRecyclerViewAdapterHelper)
 
-A powerful and flexible RecyclerViewAdapter is welcome to use. (Like you can Star )
+一个强大并且灵活的RecyclerViewAdapter，欢迎使用。（喜欢的可以**Star**一下）
+# 它能做什么？（[下载 apk](https://fir.im/s91g)）
+- **优化Adapter代码（减少百分之70%代码）**
+- **添加点击item点击、长按事件、以及item子控件的点击事件**
+- **添加加载动画（一行代码轻松切换5种默认动画）**
+- **添加头部、尾部、下拉刷新、上拉加载（感觉又回到ListView时代）**
+- **设置自定义的加载更多布局**
+- **添加分组（随心定义分组头部）**
+- **自定义不同的item类型（简单配置、无需重写额外方法）**
+- **设置空布局（比Listview的setEmptyView还要好用！）**
+- **添加拖拽item**
 
-# What can it do?（[Download apk](https://fir.im/s91g)）
-- **Optimize the Adapter code (70% less code)**
-- **Add click items, click events, and click events for item controls**
-- **Add a loaded animation (one line of code to easily switch between 5 default animations)**
-- **Add head, tail, drop down, pull up load (feel back to ListView era)**
-- **Set the custom to load more layouts**
-- **Add grouping (mind grouping header)**
-- **Customize different item types (simple configuration, no need to rewrite additional methods)**
-- **Set the empty layout (than Listview's setEmptyView also easy to use!)**
-- **Add a drag item**
 
-
-# How do you use it?
-First add the repositories in build.gradle::
+# 如何使用它？
+先在 build.gradle 的 repositories 添加:
 ```
 	allprojects {
 		repositories {
@@ -26,14 +25,14 @@ First add the repositories in build.gradle::
 		}
 	}
 ```
-Then add in the dependencies:
+然后在dependencies添加:
 ```
 	dependencies {
 	        compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.21'
 	}
 ```
 
-# How do you use it to create an adapter?
+# 如何使用它来创建Adapter？
 
 ```java
 class QuickAdapter(dataSize: Int) : BaseQuickAdapter<Status, BaseViewHolder>(R.layout.layout_animation, DataServer.getSampleData(dataSize)) {
@@ -60,9 +59,9 @@ Adapter
         }
         
 ```
-# Set the item click to add a click event that adds multiple controls to multiple controls
-##  Set it item child click
-First you need to add the childview id that you want to click on 
+# 设置 item  click  新增添加子布局多个控件的点击事件
+# 设置 it item child click
+首先需要添加需要点击触发的 childview id 
 ``` 
   override fun convert(helper: BaseViewHolder, item: ClickEntity) {
 
@@ -116,7 +115,7 @@ Activity
                }// you have set clickspan .so there should not solve any click event ,just empty
            }
 ```
-# Set  item long click
+# 设置 it item long click
 ```java
   adapter.onItemLongClickListener = BaseQuickAdapter.OnItemLongClickListener { adapter, view, position ->
             Log.d(TAG, "onItemLongClick: ")
@@ -124,14 +123,14 @@ Activity
             true
         }
 ```
-# Set  item child long click
-First you need to add the childview id that you want to click on
+# 设置 it item child long click
+首先需要添加需要点击触发的 childview id 
 ``` 
  override fun convert(helper: BaseViewHolder, item: Status) {
         helper.addOnClickListener(R.id.img).addOnClickListener(R.id.tweetName)
     }
 ```
-then
+然后
 ```java
  adapter.onItemChildLongClickListener = BaseQuickAdapter.OnItemChildLongClickListener { adapter, view, position ->
             Log.d(TAG, "onItemChildLongClick: ")
@@ -142,25 +141,25 @@ then
 
 
 
-# How do I use it to add animations?
+# 如何使用它添加动画？
 
 ```java
-// line of code to get (default for the fade effect) 
+// 一行代码搞定（默认为渐显效果）
   mAnimationAdapter.openLoadAnimation()
 ```
-Do not like the fade animation can be replaced
+不喜欢渐显动画可以这样更换
 ```java
-// default to 5 ways (fade, zoom, bottom to top, left to right, right to left) 
+// 默认提供5种方法（渐显、缩放、从下到上，从左到右、从右到左）
 mAnimationAdapter.openLoadAnimation(BaseQuickAdapter.ALPHAIN);
 ```
-Or no you like, you can customize it
+还是没你喜欢的，你可以自定义
 ```java
-// custom animation so easy 
+// 自定义动画如此轻松
   mAnimationAdapter.openLoadAnimation(BaseAnimation 
                                     { view -> arrayOf(ObjectAnimator.ofFloat(view, "scaleY", 1.0f, 1.1f, 1.0f), ObjectAnimator.ofFloat(view, "scaleX", 1.0f, 1.1f, 1.0f))
                                     })
 ```
-# Use it to add the head to add the tail
+# 使用它添加头部添加尾部
 
 ```java
 // add
@@ -173,7 +172,7 @@ removeFooterView(getView);
 removeAllHeaderView();
 removeAllFooterView();
 ```
-# Use it to load more
+# 使用它加载更多
 
 ```java
 mQuickAdapter.openLoadMore(PAGE_SIZE, true);
@@ -195,11 +194,11 @@ mQuickAdapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener
             }
         });
 ```
-# Set the custom to load more layouts
+# 设置自定义加载更多布局
 ```java
 mQuickAdapter.setLoadingView(customView);
 ```
-# Use grouping
+# 使用分组
 
 ```java
 class SectionAdapter constructor(layoutResId: Int, sectionHeadResId: Int, data: List<MySection>) : BaseSectionQuickAdapter<MySection, BaseViewHolder>(layoutResId, sectionHeadResId, data) {
@@ -221,7 +220,7 @@ class SectionAdapter constructor(layoutResId: Int, sectionHeadResId: Int, data: 
     }
 }
 ```
-# How do I add multiple types of items?
+# 如何添加多种类型item？
 
 ```java
 class MultipleItemQuickAdapter(context: Context, data: List<MultipleItem>) : BaseMultiItemQuickAdapter<MultipleItem, BaseViewHolder>(data) {
@@ -245,12 +244,12 @@ class MultipleItemQuickAdapter(context: Context, data: List<MultipleItem>) : Bas
 }
 
 ```
-# Use setEmptyView
+# 使用setEmptyView
 
 ```java
 mQuickAdapter.setEmptyView(getView());
 ```
-# Use drag and drop to delete
+# 使用拖拽与滑动删除
 
 ```java
   val listener = object : OnItemDragListener {
@@ -326,8 +325,8 @@ class ItemDragAdapter(data: List<String>) : BaseItemDraggableAdapter<String, Bas
 # Expandable Item
 
 ```Java
-// if you do not want to use inheritance, you can just implement the IExpandable interface 
-// AbstractExpandableItem is just a help class 
+// 如果不想使用继承，可以只实现IExpandable接口
+// AbstractExpandableItem只是个帮助类
 data class Level0Item(var title: String, var subTitle: String) : AbstractExpandableItem<Level1Item>(), MultiItemEntity {
 
     override fun getItemType(): Int {
@@ -420,14 +419,14 @@ in adapter code
 Use Custom BaseViewHolder
 ```Java
 
-// When using a custom BaseViewHolder, you need to override this function to create a ViewHolder 
+// 当使用自定义的BaseViewHolder时，需要重写此函数以创建ViewHolder
 protected K createBaseViewHolder(View view) {
     return (K) new BaseViewHolder(view);
 }
 
 ```
 
->**Continue to update !, so recommend Star project**
+>**持续更新!，所以推荐Star项目**
 
-# thank
+# 感谢
 [JoanZapata / base-adapter-helper](https://github.com/JoanZapata/base-adapter-helper)
