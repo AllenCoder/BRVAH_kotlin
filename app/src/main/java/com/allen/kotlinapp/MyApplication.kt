@@ -5,6 +5,7 @@ import android.content.Context
 import com.allen.kotlinapp.util.Utils
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.Logger
+import com.orhanobut.logger.Logger.addLogAdapter
 
 /**
  * 文 件 名: MyApplication
@@ -30,5 +31,6 @@ class MyApplication : Application() {
         instance = this
         Utils.init(this)
         Logger.addLogAdapter(AndroidLogAdapter())
+        Logger.d("hello");
     }
 }
