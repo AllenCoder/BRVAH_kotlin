@@ -81,7 +81,7 @@ class HeaderAndFooterUseActivity : BaseActivity() {
         //                Toast.makeText(HeaderAndFooterUseActivity.this, "" + Integer.toString(position), Toast.LENGTH_LONG).show();
         //            }
         //        });
-        headerAndFooterAdapter.onItemClickListener = BaseQuickAdapter.OnItemClickListener { adapter, view, position ->
+        headerAndFooterAdapter.onItemClickListener = BaseQuickAdapter.OnItemClickListener { adapter, _, position ->
             adapter.setNewData(DataServer.getSampleData(PAGE_SIZE))
             Toast.makeText(this@HeaderAndFooterUseActivity, "" + Integer.toString(position), Toast.LENGTH_LONG).show()
         }

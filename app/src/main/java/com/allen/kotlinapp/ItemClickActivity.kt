@@ -33,21 +33,21 @@ class ItemClickActivity : BaseActivity() {
         mRecyclerView = findViewById(R.id.list) as RecyclerView
         mRecyclerView?.layoutManager = LinearLayoutManager(this)
         initAdapter()
-        adapter?.onItemClickListener = BaseQuickAdapter.OnItemClickListener { adapter, view, position ->
+        adapter?.onItemClickListener = BaseQuickAdapter.OnItemClickListener { _, _, position ->
             Log.d(TAG, "onItemClick: ")
             Toast.makeText(this@ItemClickActivity, "onItemClick" + position, Toast.LENGTH_SHORT).show()
         }
-        adapter?.onItemLongClickListener = BaseQuickAdapter.OnItemLongClickListener { adapter, view, position ->
+        adapter?.onItemLongClickListener = BaseQuickAdapter.OnItemLongClickListener { _, _, position ->
             Log.d(TAG, "onItemLongClick: ")
             Toast.makeText(this@ItemClickActivity, "onItemLongClick" + position, Toast.LENGTH_SHORT).show()
             true
         }
-        adapter?.onItemChildClickListener = BaseQuickAdapter.OnItemChildClickListener { adapter, view, position ->
+        adapter?.onItemChildClickListener = BaseQuickAdapter.OnItemChildClickListener { _, _, position ->
             Log.d(TAG, "onItemChildClick: ")
 
             Toast.makeText(this@ItemClickActivity, "onItemChildClick" + position, Toast.LENGTH_SHORT).show()
         }
-        adapter?.onItemChildLongClickListener = BaseQuickAdapter.OnItemChildLongClickListener { adapter, view, position ->
+        adapter?.onItemChildLongClickListener = BaseQuickAdapter.OnItemChildLongClickListener { _, _, position ->
             Log.d(TAG, "onItemChildLongClick: ")
             Toast.makeText(this@ItemClickActivity, "onItemChildLongClick" + position, Toast.LENGTH_SHORT).show()
             true

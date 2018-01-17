@@ -40,7 +40,7 @@ class HomeActivity : AppCompatActivity() {
         homeAdapter.openLoadAnimation()
         val top = layoutInflater.inflate(R.layout.top_view, mRecyclerView.parent as ViewGroup, false)
         homeAdapter.addHeaderView(top)
-        homeAdapter.onItemClickListener = BaseQuickAdapter.OnItemClickListener { adapter, view, position ->
+        homeAdapter.onItemClickListener = BaseQuickAdapter.OnItemClickListener { _, _, position ->
             val intent = Intent(this@HomeActivity, ACTIVITY[position])
             startActivity(intent)
         }
