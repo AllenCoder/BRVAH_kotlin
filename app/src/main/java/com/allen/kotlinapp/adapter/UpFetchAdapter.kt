@@ -14,7 +14,7 @@ import com.allen.kotlinapp.entity.Movie
  */
 open class UpFetchAdapter : BaseDataBindingAdapter<Movie, ItemMovieBinding>(R.layout.item_movie) {
 
-    protected override fun convert(binding: ItemMovieBinding, item: Movie) {
-        binding.movie=item
+    override fun convert(binding: ItemMovieBinding, item: Movie) {
+        binding.movie = item
     }
 }

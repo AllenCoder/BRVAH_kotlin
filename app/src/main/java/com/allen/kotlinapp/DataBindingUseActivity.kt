@@ -32,12 +32,12 @@ class DataBindingUseActivity : BaseActivity() {
         mAdapter = DataBindingUseAdapter(R.layout.item_movie, genData())
         mRecyclerView.layoutManager = LinearLayoutManager(this)
         mRecyclerView.adapter = mAdapter
-        mAdapter.onItemClickListener = BaseQuickAdapter.OnItemClickListener { adapter, view, position -> ToastUtils.showShortToast("onItemClick") }
+        mAdapter.onItemClickListener = BaseQuickAdapter.OnItemClickListener { _, _, _ -> ToastUtils.showShortToast("onItemClick") }
         mAdapter.onItemChildLongClickListener = BaseQuickAdapter.OnItemChildLongClickListener { adapter, view, position ->
             ToastUtils.showShortToast("onItemChildLongClick")
             true
         }
-        mAdapter.onItemLongClickListener = BaseQuickAdapter.OnItemLongClickListener { adapter, view, position ->
+        mAdapter.onItemLongClickListener = BaseQuickAdapter.OnItemLongClickListener { _, _, _ ->
             ToastUtils.showShortToast("onItemLongClick")
             true
         }

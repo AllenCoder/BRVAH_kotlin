@@ -9,6 +9,9 @@ import android.text.style.ClickableSpan;
 import android.view.MotionEvent;
 import android.widget.TextView;
 
+/**
+ * @author Allen
+ */
 public class ClickableMovementMethod extends BaseMovementMethod {
 
     private static ClickableMovementMethod sInstance;

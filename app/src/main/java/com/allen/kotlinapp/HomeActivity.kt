@@ -31,7 +31,7 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun initView() {
-        mRecyclerView = findViewById(R.id.rv_list) as RecyclerView
+        mRecyclerView = findViewById(R.id.rv_list)
         mRecyclerView.layoutManager = GridLayoutManager(this, 2)
     }
 
@@ -49,7 +49,7 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun initData() {
-        mDataList = ArrayList<HomeItem>()
+        mDataList = ArrayList()
         for (i in TITLE.indices) {
             val item = HomeItem()
             item.title = (TITLE[i])

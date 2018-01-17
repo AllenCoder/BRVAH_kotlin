@@ -36,7 +36,7 @@ class NestAdapter : BaseQuickAdapter<Status, BaseViewHolder>(R.layout.layout_nes
         (helper.getView<View>(R.id.tweetText) as TextView).movementMethod = LinkMovementMethod.getInstance()
     }
 
-    internal var clickableSpan: ClickableSpan = object : ClickableSpan() {
+    private var clickableSpan: ClickableSpan = object : ClickableSpan() {
         override fun onClick(widget: View) {
             ToastUtils.showShortToast("事件触发了 landscapes and nedes")
         }

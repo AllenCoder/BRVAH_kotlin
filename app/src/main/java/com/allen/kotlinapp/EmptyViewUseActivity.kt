@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import com.allen.kotlinapp.adapter.QuickAdapter
 import com.allen.kotlinapp.base.BaseActivity
 import com.allen.kotlinapp.data.DataServer
+import kotlinx.android.synthetic.main.activity_empty_view_use.*
 
 /**
  * 文 件 名: EmptyViewUseActivity
@@ -28,8 +29,8 @@ class EmptyViewUseActivity : BaseActivity(), View.OnClickListener {
         setBackBtn()
         setTitle("EmptyView Use")
         setContentView(R.layout.activity_empty_view_use)
-        findViewById(R.id.btn_reset).setOnClickListener(this)
-        mRecyclerView = findViewById(R.id.rv_list) as RecyclerView
+        btn_reset.setOnClickListener(this)
+        mRecyclerView = findViewById(R.id.rv_list)
         mRecyclerView.setHasFixedSize(true)
         mRecyclerView.layoutManager = LinearLayoutManager(this)
 

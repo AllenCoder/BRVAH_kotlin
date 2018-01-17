@@ -40,11 +40,6 @@ open class BaseActivity : AppCompatActivity() {
 
     }
 
-    protected fun setBackClickListener(l: View.OnClickListener) {
-        back?.visibility = View.VISIBLE
-        back?.setOnClickListener { finish() }
-
-    }
 
     private var rootLayout: LinearLayout? = null
 

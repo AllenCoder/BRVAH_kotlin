@@ -8,6 +8,7 @@ import com.allen.kotlinapp.entity.Person
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.chad.library.adapter.base.entity.MultiItemEntity
+import com.orhanobut.logger.Logger
 
 /**
  * 文 件 名: ExpandableItemAdapter
@@ -43,11 +44,11 @@ class ExpandableItemAdapter
                 val lv0 = item as Level0Item
                 holder.setText(R.id.title, lv0.title)
                         .setText(R.id.sub_title, lv0.subTitle)
-                        .setImageResource(R.id.iv, if (lv0.isExpanded()) R.mipmap.arrow_b else R.mipmap.arrow_r)
+                        .setImageResource(R.id.iv, if (lv0.isExpanded) R.mipmap.arrow_b else R.mipmap.arrow_r)
                 holder.itemView.setOnClickListener {
                     val pos = holder.adapterPosition
-                    Log.d(TAG, "Level 0 item pos: " + pos)
-                    if (lv0.isExpanded()) {
+                    Logger.d(TAG, "Level 0 item pos: " + pos)
+                    if (lv0.isExpanded) {
                         collapse(pos)
                     } else {
                         //                            if (pos % 3 == 0) {
@@ -65,8 +66,8 @@ class ExpandableItemAdapter
                         .setImageResource(R.id.iv, if (lv1.isExpanded()) R.mipmap.arrow_b else R.mipmap.arrow_r)
                 holder.itemView.setOnClickListener {
                     val pos = holder.adapterPosition
-                    Log.d(TAG, "Level 1 item pos: " + pos)
-                    if (lv1.isExpanded()) {
+                    Logger.d(TAG, "Level 1 item pos: " + pos)
+                    if (lv1.isExpanded) {
                         collapse(pos, false)
                     } else {
                         expand(pos, false)

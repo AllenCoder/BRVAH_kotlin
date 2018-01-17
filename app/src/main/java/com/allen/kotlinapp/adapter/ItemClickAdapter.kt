@@ -20,7 +20,7 @@ import com.orhanobut.logger.Logger
  * 修改备注：
  */
 class ItemClickAdapter(data: List<ClickEntity>) : BaseMultiItemQuickAdapter<ClickEntity, BaseViewHolder>(data), BaseQuickAdapter.OnItemClickListener, BaseQuickAdapter.OnItemChildClickListener {
-    internal lateinit var nestAdapter: NestAdapter
+    private lateinit var nestAdapter: NestAdapter
 
     init {
         addItemType(ClickEntity.CLICK_ITEM_VIEW, R.layout.item_click_view)

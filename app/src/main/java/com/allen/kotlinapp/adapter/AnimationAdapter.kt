@@ -1,16 +1,10 @@
 package com.allen.kotlinapp.adapter
 
-import android.text.TextPaint
 import android.text.method.LinkMovementMethod
-import android.text.style.ClickableSpan
-import android.view.View
 import android.widget.TextView
 import com.allen.kotlinapp.R
 import com.allen.kotlinapp.data.DataServer
 import com.allen.kotlinapp.entity.Status
-import com.allen.kotlinapp.util.SpannableStringUtils
-import com.allen.kotlinapp.util.ToastUtils
-import com.allen.kotlinapp.util.Utils
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 
@@ -32,23 +26,23 @@ class AnimationAdapter : BaseQuickAdapter<Status, BaseViewHolder>(R.layout.layou
         }
         helper.setText(R.id.tweetName, "Hoteis in Rio de Janeiro")
         val msg = "\"He was one of Australia's most of distinguished artistes, renowned for his portraits\""
-        (helper.getView<View>(R.id.tweetText) as TextView).text = SpannableStringUtils.getBuilder(msg).append("landscapes and nedes").setClickSpan(clickableSpan).create()
-        (helper.getView<View>(R.id.tweetText) as TextView).movementMethod = com.allen.kotlinapp.util.ClickableMovementMethod.getInstance();
-        (helper.getView<View>(R.id.tweetText) as TextView).isFocusable = false;
-        (helper.getView<View>(R.id.tweetText) as TextView).isClickable = false;
-        (helper.getView<View>(R.id.tweetText) as TextView).isLongClickable = false;
-        (helper.getView<View>(R.id.tweetText) as TextView).movementMethod = LinkMovementMethod.getInstance()
+//        (helper.getView<TextView>(R.id.tweetText)).text = SpannableStringUtils.getBuilder(msg).append("landscapes and nedes").setClickSpan(clickableSpan).create()
+        (helper.getView<TextView>(R.id.tweetText)).movementMethod = com.allen.kotlinapp.util.ClickableMovementMethod.getInstance()
+        (helper.getView<TextView>(R.id.tweetText)).isFocusable = false
+        (helper.getView<TextView>(R.id.tweetText)).isClickable = false
+        (helper.getView<TextView>(R.id.tweetText)).isLongClickable = false
+        (helper.getView<TextView>(R.id.tweetText)).movementMethod = LinkMovementMethod.getInstance()
     }
 
-    internal var clickableSpan: ClickableSpan = object : ClickableSpan() {
-        override fun onClick(widget: View) {
-            ToastUtils.showShortToast("事件触发了 landscapes and nedes")
-        }
-
-        override fun updateDrawState(ds: TextPaint) {
-            ds.color = Utils.getContext().getResources().getColor(R.color.clickspan_color)
-            ds.isUnderlineText = true
-        }
-    }
+//    internal var clickableSpan: ClickableSpan = object : ClickableSpan() {
+//        override fun onClick(widget: View) {
+//            ToastUtils.showShortToast("事件触发了 landscapes and nedes")
+//        }
+//
+//        override fun updateDrawState(ds: TextPaint) {
+//            ds.color = Utils.getContext().getResources().getColor(R.color.clickspan_color)
+//            ds.isUnderlineText = true
+//        }
+//    }
 }
 

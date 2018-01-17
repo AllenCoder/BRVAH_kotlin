@@ -1,10 +1,10 @@
 package com.allen.kotlinapp
 
-import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.support.v7.app.AppCompatActivity
 import com.orhanobut.logger.Logger
+import org.jetbrains.anko.startActivity
 
 /**
  * 文 件 名: WelcomeActivity
@@ -18,8 +18,7 @@ class WelcomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_welcome)
         Handler().postDelayed({
-            val intent = Intent(this@WelcomeActivity, HomeActivity::class.java)
-            startActivity(intent)
+            startActivity<HomeActivity>()
             finish()
             Logger.d(this@WelcomeActivity)
         }, 2000)

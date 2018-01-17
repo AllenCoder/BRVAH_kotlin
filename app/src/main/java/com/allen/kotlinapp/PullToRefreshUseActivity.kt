@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import com.allen.kotlinapp.adapter.PullToRefreshAdapter
@@ -16,6 +17,7 @@ import com.allen.kotlinapp.data.DataServer
 import com.allen.kotlinapp.loadmore.CustomLoadMoreView
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.listener.OnItemClickListener
+import org.jetbrains.anko.toast
 
 /**
  * 文 件 名: PullToRefreshUseActivity
@@ -25,9 +27,9 @@ import com.chad.library.adapter.base.listener.OnItemClickListener
  * 修改备注：
  */
 class PullToRefreshUseActivity : BaseActivity(), BaseQuickAdapter.RequestLoadMoreListener, SwipeRefreshLayout.OnRefreshListener {
-    private lateinit  var mRecyclerView: RecyclerView
-    private lateinit  var pullToRefreshAdapter: PullToRefreshAdapter
-    private lateinit  var mSwipeRefreshLayout: SwipeRefreshLayout
+    private lateinit var mRecyclerView: RecyclerView
+    private lateinit var pullToRefreshAdapter: PullToRefreshAdapter
+    private lateinit var mSwipeRefreshLayout: SwipeRefreshLayout
 
     private val delayMillis = 1000
 
@@ -40,8 +42,8 @@ class PullToRefreshUseActivity : BaseActivity(), BaseQuickAdapter.RequestLoadMor
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_main)
-        mRecyclerView = findViewById(R.id.rv_list) as RecyclerView
-        mSwipeRefreshLayout = findViewById(R.id.swipeLayout) as SwipeRefreshLayout
+        mRecyclerView = findViewById(R.id.rv_list)
+        mSwipeRefreshLayout = findViewById(R.id.swipeLayout)
         mSwipeRefreshLayout.setOnRefreshListener(this)
         mSwipeRefreshLayout.setColorSchemeColors(Color.rgb(47, 223, 189))
         mRecyclerView.layoutManager = LinearLayoutManager(this)
@@ -53,13 +55,13 @@ class PullToRefreshUseActivity : BaseActivity(), BaseQuickAdapter.RequestLoadMor
 
     private fun addHeadView() {
         val headView = layoutInflater.inflate(R.layout.head_view, mRecyclerView.parent as ViewGroup, false)
-        headView.findViewById(R.id.iv).visibility = View.GONE
+        (headView.findViewById(R.id.iv) as ImageView).visibility = View.GONE
         (headView.findViewById(R.id.tv) as TextView).text = "change load view"
         headView.setOnClickListener({
             mLoadMoreEndGone = true
             pullToRefreshAdapter.setLoadMoreView(CustomLoadMoreView())
             mRecyclerView.adapter = pullToRefreshAdapter
-            Toast.makeText(this@PullToRefreshUseActivity, "change complete", Toast.LENGTH_LONG).show()
+            toast( "change complete")
         })
         pullToRefreshAdapter.addHeaderView(headView)
     }
@@ -79,7 +81,7 @@ class PullToRefreshUseActivity : BaseActivity(), BaseQuickAdapter.RequestLoadMor
                     pullToRefreshAdapter.loadMoreComplete()
                 } else {
                     isErr = true
-                    Toast.makeText(this@PullToRefreshUseActivity, R.string.network_err, Toast.LENGTH_LONG).show()
+                    toast( R.string.network_err)
                     pullToRefreshAdapter.loadMoreFail()
 
                 }
@@ -109,7 +111,7 @@ class PullToRefreshUseActivity : BaseActivity(), BaseQuickAdapter.RequestLoadMor
 
         mRecyclerView.addOnItemTouchListener(object : OnItemClickListener() {
             override fun onSimpleItemClick(adapter: BaseQuickAdapter<*, *>, view: View, position: Int) {
-                Toast.makeText(this@PullToRefreshUseActivity, Integer.toString(position), Toast.LENGTH_LONG).show()
+               toast( Integer.toString(position))
             }
         })
     }

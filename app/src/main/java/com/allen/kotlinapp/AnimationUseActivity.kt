@@ -13,6 +13,7 @@ import com.allen.kotlinapp.util.ToastUtils
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.jaredrummler.materialspinner.MaterialSpinner
 import com.kyleduo.switchbutton.SwitchButton
+import org.jetbrains.anko.toast
 
 /**
  * 文 件 名: AnimationUseActivity
@@ -32,7 +33,7 @@ class AnimationUseActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_adapter_use)
-        mRecyclerView = findViewById(R.id.rv_list) as RecyclerView
+        mRecyclerView = findViewById<RecyclerView>(R.id.rv_list)
         mRecyclerView.setHasFixedSize(true)
         mRecyclerView.layoutManager = LinearLayoutManager(this)
         initAdapter()
@@ -42,7 +43,7 @@ class AnimationUseActivity : Activity() {
 
     private fun initView() {
 
-        mImgBtn = findViewById(R.id.img_back) as ImageView
+        mImgBtn = findViewById(R.id.img_back)
         mImgBtn.setOnClickListener { finish() }
     }
 
@@ -50,8 +51,8 @@ class AnimationUseActivity : Activity() {
         mAnimationAdapter = AnimationAdapter()
         mAnimationAdapter.openLoadAnimation()
         mAnimationAdapter.setNotDoAnimationCount(mFirstPageItemCount)
-        mAnimationAdapter.onItemClickListener = BaseQuickAdapter.OnItemClickListener { adapter, view, position ->
-            ToastUtils.showShortToast("第 " + position + "Item 被点击")
+        mAnimationAdapter.onItemClickListener = BaseQuickAdapter.OnItemClickListener { _, _, position ->
+            toast("第 " + position + "Item 被点击")
         }
 //        mAnimationAdapter.openLoadAnimation(BaseAnimation
 //                                    { view -> arrayOf(ObjectAnimator.ofFloat(view, "scaleY", 1.0f, 1.1f, 1.0f), ObjectAnimator.ofFloat(view, "scaleX", 1.0f, 1.1f, 1.0f))
@@ -59,28 +60,30 @@ class AnimationUseActivity : Activity() {
         mAnimationAdapter.onItemChildClickListener = BaseQuickAdapter.OnItemChildClickListener { adapter, view, position ->
             var content: String
             val status = adapter.getItem(position) as Status
-            when (view.id) {
+            content = when (view.id) {
                 R.id.img -> {
-                    content = "img:" + status.userAvatar
-                    Toast.makeText(this@AnimationUseActivity, content, Toast.LENGTH_LONG).show()
+                    "img:" + status.userAvatar
                 }
                 R.id.tweetName -> {
-                    content = "name:" + status.userName
-                    Toast.makeText(this@AnimationUseActivity, content, Toast.LENGTH_LONG).show()
+                    "name:" + status.userName
                 }
                 R.id.tweetText -> {
-                    content = "tweetText:" + status.userName
-                    Toast.makeText(this@AnimationUseActivity, content, Toast.LENGTH_LONG).show()
+                    "tweetText:" + status.userName
                 }
+                else -> {
+                    "触发其他控件"
+                }
+
             }// you have set clickspan .so there should not solve any click event ,just empty
+            toast(content)
         }
         mRecyclerView.adapter = mAnimationAdapter
     }
 
     private fun initMenu() {
-        val spinner = findViewById(R.id.spinner) as MaterialSpinner
+        val spinner = findViewById<MaterialSpinner>(R.id.spinner)
         spinner.setItems("AlphaIn", "ScaleIn", "SlideInBottom", "SlideInLeft", "SlideInRight", "Custom")
-        spinner.setOnItemSelectedListener { view, position, id, item ->
+        spinner.setOnItemSelectedListener { _, position, _, _ ->
             when (position) {
                 0 -> mAnimationAdapter.openLoadAnimation(BaseQuickAdapter.ALPHAIN)
                 1 -> mAnimationAdapter.openLoadAnimation(BaseQuickAdapter.SCALEIN)
@@ -94,8 +97,8 @@ class AnimationUseActivity : Activity() {
             mRecyclerView.adapter = mAnimationAdapter
         }
         mAnimationAdapter.isFirstOnly(false)//init firstOnly state
-        val switchButton = findViewById(R.id.switch_button) as SwitchButton
-        switchButton.setOnCheckedChangeListener { buttonView, isChecked ->
+        val switchButton = findViewById<SwitchButton>(R.id.switch_button)
+        switchButton.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 mAnimationAdapter.isFirstOnly(true)
             } else {

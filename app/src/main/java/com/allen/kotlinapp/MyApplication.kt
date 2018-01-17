@@ -1,8 +1,9 @@
 package com.allen.kotlinapp
 
 import android.app.Application
+import android.content.Context
 import com.allen.kotlinapp.util.Utils
-import com.orhanobut.logger.LogLevel
+import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.Logger
 
 /**
@@ -14,24 +15,26 @@ import com.orhanobut.logger.Logger
  */
 class MyApplication : Application() {
 
-    override fun onCreate() {
-        super.onCreate()
+    init {
         instance = this
-        Utils.init(this)
-        if (BuildConfig.DEBUG) {
-            Logger
-                    .init("BaseRecyclerViewAdapter")                 // default PRETTYLOGGER or use just init()
-                    .methodCount(3)                 // default 2
-                    .logLevel(LogLevel.FULL)        // default LogLevel.FULL
-                    .methodOffset(2)                // default 0
-            //default AndroidLogAdapter
-
-
-        }
     }
 
     companion object {
-        var instance: MyApplication? = null
-            private set
+        private var instance: MyApplication? = null
+
+        fun applicationContext() : Context {
+            return instance!!.applicationContext
+        }
+    }
+
+    override fun onCreate() {
+        super.onCreate()
+        // initialize for any
+        instance = this
+        Utils.init(this)
+        Logger.addLogAdapter(AndroidLogAdapter())
+        // Use ApplicationContext.
+        // example: SharedPreferences etc...
+        val context: Context = MyApplication.applicationContext()
     }
 }

@@ -32,12 +32,6 @@ class DataBindingUseAdapter(layoutResId: Int, data: List<Movie>) : BaseQuickAdap
             1 -> helper.setImageResource(R.id.iv, R.mipmap.m_img2)
         }
     }
-
-    /*  @Override
-    protected MovieViewHolder createBaseViewHolder(View view) {
-        return new MovieViewHolder(view);
-    }
-*/
     override fun getItemView(layoutResId: Int, parent: ViewGroup): View {
         val binding = DataBindingUtil.inflate<ViewDataBinding>(mLayoutInflater, layoutResId, parent, false) ?: return super.getItemView(layoutResId, parent)
         val view = binding.root
