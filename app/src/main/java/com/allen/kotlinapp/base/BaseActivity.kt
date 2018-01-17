@@ -56,13 +56,13 @@ open class BaseActivity : AppCompatActivity() {
     }
 
     private fun initToolbar() {
-        val toolbar = findViewById(R.id.toolbar) as Toolbar
+        val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
         // Enable the Up button
         supportActionBar?.setDisplayHomeAsUpEnabled(false)
         supportActionBar?.setDisplayShowTitleEnabled(false)
-        back = findViewById(R.id.img_back) as ImageView
-        title = findViewById(R.id.title) as TextView
+        back = findViewById(R.id.img_back)
+        title = findViewById(R.id.title)
     }
 
 
@@ -71,7 +71,7 @@ open class BaseActivity : AppCompatActivity() {
     }
 
     override fun setContentView(view: View) {
-        rootLayout = findViewById(R.id.root_layout) as LinearLayout
+        rootLayout = findViewById(R.id.root_layout)
         if (rootLayout == null) return
         rootLayout?.addView(view, ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT))
         initToolbar()

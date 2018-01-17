@@ -1,6 +1,8 @@
 package com.allen.kotlinapp
 
 import android.os.Bundle
+import android.os.Parcel
+import android.os.Parcelable
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import com.allen.kotlinapp.adapter.UpFetchAdapter
@@ -19,9 +21,9 @@ import java.util.*
  * 修改备注：
  */
 
-class UpFetchUseActivity : BaseActivity() {
-    internal lateinit  var mRecyclerView: RecyclerView
-    internal lateinit  var mAdapter: UpFetchAdapter
+class UpFetchUseActivity() : BaseActivity(), Parcelable {
+    private lateinit  var mRecyclerView: RecyclerView
+    private lateinit  var mAdapter: UpFetchAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +31,7 @@ class UpFetchUseActivity : BaseActivity() {
         setTitle("UpFetch Use")
         setContentView(R.layout.activity_data_binding_use)
 
-        mRecyclerView = findViewById(R.id.rv) as RecyclerView
+        mRecyclerView = findViewById(R.id.rv)
         mAdapter = UpFetchAdapter()
         mRecyclerView.layoutManager = LinearLayoutManager(this)
         mRecyclerView.adapter = mAdapter
@@ -39,10 +41,14 @@ class UpFetchUseActivity : BaseActivity() {
          * start fetch when scroll to position 2, default is 1.
          */
         mAdapter.setStartUpFetchPosition(2)
-        mAdapter.setUpFetchListener(BaseQuickAdapter.UpFetchListener { startUpFetch() })
+        mAdapter.setUpFetchListener({ startUpFetch() })
     }
 
     private var count: Int = 0
+
+    constructor(parcel: Parcel) : this() {
+        count = parcel.readInt()
+    }
 
     private fun startUpFetch() {
         count++
@@ -72,9 +78,6 @@ class UpFetchUseActivity : BaseActivity() {
                 mAdapter.isUpFetchEnable = false
             }
         }
-//        mRecyclerView.postDelayed({
-//
-//        }, 300)
     }
 
 
@@ -89,5 +92,23 @@ class UpFetchUseActivity : BaseActivity() {
             list.add(movie)
         }
         return list
+    }
+
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeInt(count)
+    }
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<UpFetchUseActivity> {
+        override fun createFromParcel(parcel: Parcel): UpFetchUseActivity {
+            return UpFetchUseActivity(parcel)
+        }
+
+        override fun newArray(size: Int): Array<UpFetchUseActivity?> {
+            return arrayOfNulls(size)
+        }
     }
 }

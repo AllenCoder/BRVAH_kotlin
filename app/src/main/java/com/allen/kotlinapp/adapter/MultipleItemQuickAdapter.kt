@@ -1,6 +1,5 @@
 package com.allen.kotlinapp.adapter
 
-import android.content.Context
 import com.allen.kotlinapp.R
 import com.allen.kotlinapp.entity.MultipleItem
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter
@@ -13,7 +12,7 @@ import com.chad.library.adapter.base.BaseViewHolder
  * 修改时间：
  * 修改备注：
  */
-class MultipleItemQuickAdapter(context: Context, data: List<MultipleItem>) : BaseMultiItemQuickAdapter<MultipleItem, BaseViewHolder>(data) {
+class MultipleItemQuickAdapter(data: List<MultipleItem>) : BaseMultiItemQuickAdapter<MultipleItem, BaseViewHolder>(data) {
 
     init {
         addItemType(MultipleItem.TEXT, R.layout.item_text_view)

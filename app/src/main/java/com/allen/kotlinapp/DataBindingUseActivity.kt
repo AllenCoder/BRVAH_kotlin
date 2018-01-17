@@ -8,6 +8,7 @@ import com.allen.kotlinapp.base.BaseActivity
 import com.allen.kotlinapp.entity.Movie
 import com.allen.kotlinapp.util.ToastUtils
 import com.chad.library.adapter.base.BaseQuickAdapter
+import org.jetbrains.anko.toast
 import java.util.*
 
 /**
@@ -28,17 +29,17 @@ class DataBindingUseActivity : BaseActivity() {
         setTitle("DataBinding Use")
         setContentView(R.layout.activity_data_binding_use)
 
-        mRecyclerView = findViewById(R.id.rv) as RecyclerView
+        mRecyclerView = findViewById(R.id.rv)
         mAdapter = DataBindingUseAdapter(R.layout.item_movie, genData())
         mRecyclerView.layoutManager = LinearLayoutManager(this)
         mRecyclerView.adapter = mAdapter
         mAdapter.onItemClickListener = BaseQuickAdapter.OnItemClickListener { _, _, _ -> ToastUtils.showShortToast("onItemClick") }
-        mAdapter.onItemChildLongClickListener = BaseQuickAdapter.OnItemChildLongClickListener { adapter, view, position ->
-            ToastUtils.showShortToast("onItemChildLongClick")
+        mAdapter.onItemChildLongClickListener = BaseQuickAdapter.OnItemChildLongClickListener { _, _, _ ->
+            toast("onItemChildLongClick")
             true
         }
         mAdapter.onItemLongClickListener = BaseQuickAdapter.OnItemLongClickListener { _, _, _ ->
-            ToastUtils.showShortToast("onItemLongClick")
+            toast("onItemLongClick")
             true
         }
     }

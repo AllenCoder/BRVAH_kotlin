@@ -22,9 +22,6 @@ class MyApplication : Application() {
     companion object {
         private var instance: MyApplication? = null
 
-        fun applicationContext() : Context {
-            return instance!!.applicationContext
-        }
     }
 
     override fun onCreate() {
@@ -33,8 +30,5 @@ class MyApplication : Application() {
         instance = this
         Utils.init(this)
         Logger.addLogAdapter(AndroidLogAdapter())
-        // Use ApplicationContext.
-        // example: SharedPreferences etc...
-        val context: Context = MyApplication.applicationContext()
     }
 }

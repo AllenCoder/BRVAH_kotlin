@@ -28,7 +28,7 @@ class ExpandableUseActivity : BaseActivity() {
         setTitle("ExpandableItem Activity")
         setContentView(R.layout.activity_expandable_item_use)
 
-        mRecyclerView = findViewById(R.id.rv) as RecyclerView
+        mRecyclerView = findViewById(R.id.rv)
 
         list = generateData()
         adapter = ExpandableItemAdapter(list)
@@ -55,11 +55,11 @@ class ExpandableUseActivity : BaseActivity() {
         val random = Random()
 
         val res = ArrayList<MultiItemEntity>()
-        for (i in 0..lv0Count - 1) {
+        for (i in 0 until lv0Count) {
             val lv0 = Level0Item("This is " + i + "th item in Level 0", "subtitle of " + i)
-            for (j in 0..lv1Count - 1) {
+            for (j in 0 until lv1Count) {
                 val lv1 = Level1Item("Level 1 item: " + j, "(no animation)")
-                for (k in 0..personCount - 1) {
+                for (k in 0 until personCount) {
                     lv1.addSubItem(Person(nameList[k], random.nextInt(40)))
                 }
                 lv0.addSubItem(lv1)

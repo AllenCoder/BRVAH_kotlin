@@ -11,6 +11,7 @@ import com.allen.kotlinapp.adapter.ItemClickAdapter
 import com.allen.kotlinapp.base.BaseActivity
 import com.allen.kotlinapp.entity.ClickEntity
 import com.chad.library.adapter.base.BaseQuickAdapter
+import org.jetbrains.anko.toast
 import java.util.*
 
 /**
@@ -30,34 +31,34 @@ class ItemClickActivity : BaseActivity() {
         setBackBtn()
         setTitle("ItemClickActivity Activity")
         setContentView(R.layout.activity_item_click)
-        mRecyclerView = findViewById(R.id.list) as RecyclerView
+        mRecyclerView = findViewById(R.id.list)
         mRecyclerView?.layoutManager = LinearLayoutManager(this)
         initAdapter()
         adapter?.onItemClickListener = BaseQuickAdapter.OnItemClickListener { _, _, position ->
             Log.d(TAG, "onItemClick: ")
-            Toast.makeText(this@ItemClickActivity, "onItemClick" + position, Toast.LENGTH_SHORT).show()
+            toast("onItemClick" + position)
         }
         adapter?.onItemLongClickListener = BaseQuickAdapter.OnItemLongClickListener { _, _, position ->
             Log.d(TAG, "onItemLongClick: ")
-            Toast.makeText(this@ItemClickActivity, "onItemLongClick" + position, Toast.LENGTH_SHORT).show()
+            toast( "onItemLongClick" + position)
             true
         }
         adapter?.onItemChildClickListener = BaseQuickAdapter.OnItemChildClickListener { _, _, position ->
             Log.d(TAG, "onItemChildClick: ")
 
-            Toast.makeText(this@ItemClickActivity, "onItemChildClick" + position, Toast.LENGTH_SHORT).show()
+            toast("onItemChildClick" + position)
         }
         adapter?.onItemChildLongClickListener = BaseQuickAdapter.OnItemChildLongClickListener { _, _, position ->
             Log.d(TAG, "onItemChildLongClick: ")
-            Toast.makeText(this@ItemClickActivity, "onItemChildLongClick" + position, Toast.LENGTH_SHORT).show()
+            toast( "onItemChildLongClick" + position)
             true
         }
-        mRecyclerView?.addOnItemTouchListener(object :com.chad.library.adapter.base.listener.OnItemClickListener(){
-            override fun onSimpleItemClick(p0: BaseQuickAdapter<*, *>?, p1: View?, p2: Int) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-            }
-
-        })
+//        mRecyclerView?.addOnItemTouchListener(object :com.chad.library.adapter.base.listener.OnItemClickListener(){
+//            override fun onSimpleItemClick(p0: BaseQuickAdapter<*, *>?, p1: View?, p2: Int) {
+//                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+//            }
+//
+//        })
         /**
          * you can also use this way to solve your click Event
          */
@@ -94,7 +95,7 @@ class ItemClickActivity : BaseActivity() {
              *//*
             override fun onItemChildClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
                 Logger.d("onItemChildClick $position be click")
-                Toast.makeText(this@ItemClickActivity, "onItemChildClick" + position, Toast.LENGTH_SHORT).show()
+                toast(this@ItemClickActivity, "onItemChildClick" + position, Toast.LENGTH_SHORT).show()
 
             }
 
@@ -107,7 +108,7 @@ class ItemClickActivity : BaseActivity() {
              * @param position
              *//*
             override fun onItemLongClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
-                Toast.makeText(this@ItemClickActivity, "onItemLongClick" + position, Toast.LENGTH_SHORT).show()
+                toast(this@ItemClickActivity, "onItemLongClick" + position, Toast.LENGTH_SHORT).show()
             }
 
             *//**
@@ -119,7 +120,7 @@ class ItemClickActivity : BaseActivity() {
              * @param position
              *//*
             override fun onItemChildLongClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
-                Toast.makeText(this@ItemClickActivity, "onItemChildLongClick" + position, Toast.LENGTH_SHORT).show()
+                toast(this@ItemClickActivity, "onItemChildLongClick" + position, Toast.LENGTH_SHORT).show()
             }
         })*/
 

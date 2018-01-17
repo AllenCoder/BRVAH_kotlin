@@ -15,7 +15,8 @@ import com.chad.library.adapter.base.BaseViewHolder
  * 修改时间：
  * 修改备注：
  */
-class AnimationAdapter : BaseQuickAdapter<Status, BaseViewHolder>(R.layout.layout_animation, DataServer.getSampleData(100)) {
+open class AnimationAdapter : BaseQuickAdapter<Status, BaseViewHolder>(R.layout.layout_animation, DataServer.getSampleData(100)) {
+
 
     override fun convert(helper: BaseViewHolder, item: Status) {
         helper.addOnClickListener(R.id.img).addOnClickListener(R.id.tweetName)

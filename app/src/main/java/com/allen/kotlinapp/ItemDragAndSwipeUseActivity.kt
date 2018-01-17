@@ -8,16 +8,14 @@ import android.support.v4.content.ContextCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.helper.ItemTouchHelper
-import android.util.Log
 import com.allen.kotlinapp.adapter.ItemDragAdapter
 import com.allen.kotlinapp.base.BaseActivity
-import com.allen.kotlinapp.util.ToastUtils
 import com.chad.library.adapter.base.BaseQuickAdapter
-import com.chad.library.adapter.base.BaseViewHolder
 import com.chad.library.adapter.base.callback.ItemDragAndSwipeCallback
 import com.chad.library.adapter.base.listener.OnItemDragListener
 import com.chad.library.adapter.base.listener.OnItemSwipeListener
 import com.orhanobut.logger.Logger
+import org.jetbrains.anko.toast
 
 /**
  * 文 件 名: ItemDragAndSwipeUseActivity
@@ -88,17 +86,13 @@ class ItemDragAndSwipeUseActivity : BaseActivity() {
         mAdapter.enableDragItem(mItemTouchHelper)
         mAdapter.setOnItemDragListener(listener)
         mRecyclerView.adapter = mAdapter
-        mAdapter.onItemClickListener = BaseQuickAdapter.OnItemClickListener { _, _, position -> ToastUtils.showShortToast("点击了" + position) }
+        mAdapter.onItemClickListener = BaseQuickAdapter.OnItemClickListener { _, _, position -> toast("点击了" + position) }
     }
 
     private fun generateData(size: Int): List<String> {
         val data = ArrayList<String>(size)
         (0 until size).mapTo(data) { "item " + it }
         return data
-    }
-
-    companion object {
-        private val TAG = ItemDragAndSwipeUseActivity::class.java.simpleName
     }
 
 

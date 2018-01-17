@@ -22,9 +22,9 @@ class MultipleItemUseActivity : BaseActivity() {
         setContentView(R.layout.activity_multiple_item_use)
         setTitle("MultipleItem Use")
         setBackBtn()
-        mRecyclerView = findViewById(R.id.rv_list) as RecyclerView
+        mRecyclerView = findViewById(R.id.rv_list)
         val data = DataServer.getMultipleItemData()
-        val multipleItemAdapter = MultipleItemQuickAdapter(this, data)
+        val multipleItemAdapter = MultipleItemQuickAdapter(data)
         val manager = GridLayoutManager(this, 4)
         mRecyclerView.layoutManager = manager
         multipleItemAdapter.setSpanSizeLookup({ _, position -> data[position].spanSize })

@@ -9,6 +9,7 @@ import com.allen.kotlinapp.base.BaseActivity
 import com.allen.kotlinapp.data.DataServer
 import com.allen.kotlinapp.entity.MySection
 import com.chad.library.adapter.base.BaseQuickAdapter
+import org.jetbrains.anko.toast
 
 /**
  * 文 件 名: SectionUseActivity
@@ -18,28 +19,28 @@ import com.chad.library.adapter.base.BaseQuickAdapter
  * 修改备注：
  */
 class SectionUseActivity : BaseActivity() {
-    private var mRecyclerView: RecyclerView? = null
-    private var mData: List<MySection>? = null
+    private lateinit var mRecyclerView: RecyclerView
+    private lateinit var mData: List<MySection>
 
-    protected override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_section_uer)
         setBackBtn()
         setTitle("Section Use")
-        mRecyclerView = findViewById(R.id.rv_list) as RecyclerView
-        mRecyclerView!!.layoutManager = GridLayoutManager(this, 2)
+        mRecyclerView = findViewById(R.id.rv_list)
+        mRecyclerView.layoutManager = GridLayoutManager(this, 2)
         mData = DataServer.getSampleData()
-        val sectionAdapter = SectionAdapter(R.layout.item_section_content, R.layout.def_section_head, mData!!)
+        val sectionAdapter = SectionAdapter(R.layout.item_section_content, R.layout.def_section_head, mData)
 
-        sectionAdapter.setOnItemClickListener(BaseQuickAdapter.OnItemClickListener { adapter, view, position ->
-            val mySection = mData!![position]
+        sectionAdapter.setOnItemClickListener({ _, _, position ->
+            val mySection = mData[position]
             if (mySection.isHeader)
-                Toast.makeText(this@SectionUseActivity, mySection.header, Toast.LENGTH_LONG).show()
+                toast(mySection.header)
             else
-                Toast.makeText(this@SectionUseActivity, mySection.t.name, Toast.LENGTH_LONG).show()
+                toast(mySection.t.name!!)
         })
-        sectionAdapter.setOnItemChildClickListener(BaseQuickAdapter.OnItemChildClickListener { adapter, view, position -> Toast.makeText(this@SectionUseActivity, "onItemChildClick" + position, Toast.LENGTH_LONG).show() })
-        mRecyclerView!!.adapter = sectionAdapter
+        sectionAdapter.setOnItemChildClickListener({ _, _, position -> toast("onItemChildClick" + position) })
+        mRecyclerView.adapter = sectionAdapter
     }
 
 

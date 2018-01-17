@@ -11,6 +11,7 @@ import com.allen.kotlinapp.adapter.HeaderAndFooterAdapter
 import com.allen.kotlinapp.base.BaseActivity
 import com.allen.kotlinapp.data.DataServer
 import com.chad.library.adapter.base.BaseQuickAdapter
+import org.jetbrains.anko.toast
 
 /**
  * 文 件 名: HeaderAndFooterUseActivity
@@ -30,7 +31,7 @@ class HeaderAndFooterUseActivity : BaseActivity() {
         setTitle("HeaderAndFooter Use")
 
         setContentView(R.layout.activity_header_and_footer_use)
-        mRecyclerView = findViewById(R.id.rv_list) as RecyclerView
+        mRecyclerView = findViewById(R.id.rv_list)
         mRecyclerView.layoutManager = LinearLayoutManager(this)
         initAdapter()
 
@@ -56,7 +57,7 @@ class HeaderAndFooterUseActivity : BaseActivity() {
     }
 
     private fun getFooterView(type: Int, listener: View.OnClickListener): View {
-        val view = getLayoutInflater().inflate(R.layout.footer_view, mRecyclerView.parent as ViewGroup, false)
+        val view = layoutInflater.inflate(R.layout.footer_view, mRecyclerView.parent as ViewGroup, false)
         if (type == 1) {
             (view.findViewById(R.id.iv) as ImageView).setImageResource(R.mipmap.rm_icon)
         }
@@ -83,7 +84,7 @@ class HeaderAndFooterUseActivity : BaseActivity() {
         //        });
         headerAndFooterAdapter.onItemClickListener = BaseQuickAdapter.OnItemClickListener { adapter, _, position ->
             adapter.setNewData(DataServer.getSampleData(PAGE_SIZE))
-            Toast.makeText(this@HeaderAndFooterUseActivity, "" + Integer.toString(position), Toast.LENGTH_LONG).show()
+           toast( "" + Integer.toString(position))
         }
 
     }
