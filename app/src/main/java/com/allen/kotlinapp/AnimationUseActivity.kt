@@ -33,7 +33,7 @@ class AnimationUseActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_adapter_use)
-        mRecyclerView = findViewById<RecyclerView>(R.id.rv_list)
+        mRecyclerView = findViewById(R.id.rv_list)
         mRecyclerView.setHasFixedSize(true)
         mRecyclerView.layoutManager = LinearLayoutManager(this)
         initAdapter()
