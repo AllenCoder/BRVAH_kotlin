@@ -5,11 +5,9 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.widget.ImageView
-import android.widget.Toast
 import com.allen.kotlinapp.adapter.AnimationAdapter
 import com.allen.kotlinapp.animation.CustomAnimation
 import com.allen.kotlinapp.entity.Status
-import com.allen.kotlinapp.util.ToastUtils
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.jaredrummler.materialspinner.MaterialSpinner
 import com.kyleduo.switchbutton.SwitchButton
