@@ -8,9 +8,8 @@ import android.support.v7.widget.RecyclerView
 import com.allen.kotlinapp.adapter.UpFetchAdapter
 import com.allen.kotlinapp.base.BaseActivity
 import com.allen.kotlinapp.entity.Movie
-import com.chad.library.adapter.base.BaseQuickAdapter
-import kotlinx.coroutines.experimental.android.UI
-import kotlinx.coroutines.experimental.async
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import java.util.*
 
 /**
@@ -59,7 +58,7 @@ class UpFetchUseActivity() : BaseActivity(), Parcelable {
         /**
          * get data from internet.
          */
-        async(UI){
+        GlobalScope.launch{
             mAdapter.addData(0, genData())
             /**
              * set fetching off when network request ends.

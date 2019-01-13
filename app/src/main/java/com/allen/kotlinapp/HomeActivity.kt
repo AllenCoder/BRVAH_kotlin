@@ -9,13 +9,6 @@ import android.view.ViewGroup
 import com.allen.kotlinapp.adapter.HomeAdapter
 import com.allen.kotlinapp.entity.HomeItem
 import com.chad.library.adapter.base.BaseQuickAdapter
-import com.orhanobut.logger.Logger
-import kotlinx.coroutines.experimental.Deferred
-import kotlinx.coroutines.experimental.android.UI
-import kotlinx.coroutines.experimental.async
-import org.jetbrains.anko.coroutines.experimental.bg
-import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.toast
 import java.util.*
 
 /**
