@@ -31,7 +31,7 @@ First add the repositories in build.gradle::
 Then add in the dependencies:
 ```
 	dependencies {
-	        compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.21'
+	        compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.46'
 	}
 ```
 
