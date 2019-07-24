@@ -40,10 +40,11 @@ class ItemClickActivity : BaseActivity() {
             val adapterData: MutableList<ClickEntity> = adapter.data
             toast(adapterData.size)
         }
-        adapter.onItemLongClickListener = BaseQuickAdapter.OnItemLongClickListener { _, _, position ->
-            Log.d(TAG, "onItemLongClick: ")
-
-            toast( "onItemLongClick" + position)
+        adapter.setOnItemLongClickListener{ madapter, view, position ->
+            Log.d(TAG, "onItemClick: ")
+            toast("onItemClick" + position)
+            val adapterData: MutableList<ClickEntity> = madapter.data as MutableList<ClickEntity>
+            toast(adapterData.size)
             true
         }
         adapter.onItemChildClickListener = BaseQuickAdapter.OnItemChildClickListener { _, _, position ->
@@ -138,7 +139,7 @@ class ItemClickActivity : BaseActivity() {
         data.add(ClickEntity(ClickEntity.LONG_CLICK_ITEM_CHILD_VIEW))
         data.add(ClickEntity(ClickEntity.NEST_CLICK_ITEM_CHILD_VIEW))
         adapter = ItemClickAdapter(data)
-        adapter?.openLoadAnimation()
+        adapter.openLoadAnimation()
         mRecyclerView?.adapter = adapter
     }
 
