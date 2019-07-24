@@ -24,7 +24,7 @@ import java.util.*
 class ItemClickActivity : BaseActivity() {
 
     private var mRecyclerView: RecyclerView? = null
-    private var adapter: ItemClickAdapter? = null
+    private lateinit var adapter: ItemClickAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,21 +34,24 @@ class ItemClickActivity : BaseActivity() {
         mRecyclerView = findViewById(R.id.list)
         mRecyclerView?.layoutManager = LinearLayoutManager(this)
         initAdapter()
-        adapter?.onItemClickListener = BaseQuickAdapter.OnItemClickListener { _, _, position ->
+        adapter.onItemClickListener = BaseQuickAdapter.OnItemClickListener { _, _, position ->
             Log.d(TAG, "onItemClick: ")
             toast("onItemClick" + position)
+            val adapterData: MutableList<ClickEntity> = adapter.data
+            toast(adapterData.size)
         }
-        adapter?.onItemLongClickListener = BaseQuickAdapter.OnItemLongClickListener { _, _, position ->
+        adapter.onItemLongClickListener = BaseQuickAdapter.OnItemLongClickListener { _, _, position ->
             Log.d(TAG, "onItemLongClick: ")
+
             toast( "onItemLongClick" + position)
             true
         }
-        adapter?.onItemChildClickListener = BaseQuickAdapter.OnItemChildClickListener { _, _, position ->
+        adapter.onItemChildClickListener = BaseQuickAdapter.OnItemChildClickListener { _, _, position ->
             Log.d(TAG, "onItemChildClick: ")
 
             toast("onItemChildClick" + position)
         }
-        adapter?.onItemChildLongClickListener = BaseQuickAdapter.OnItemChildLongClickListener { _, _, position ->
+        adapter.onItemChildLongClickListener = BaseQuickAdapter.OnItemChildLongClickListener { _, _, position ->
             Log.d(TAG, "onItemChildLongClick: ")
             toast( "onItemChildLongClick" + position)
             true
